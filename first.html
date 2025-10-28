@@ -111,12 +111,10 @@
 
         /* Hero Section */
         .hero {
-            background-image: 
-                linear-gradient(to bottom, rgba(10, 37, 64, 0.75), rgba(10, 37, 64, 0.85)),
-                url('https://app.groundfloor.us/assets/onboarding-background-min-DNhBbaVw.jpeg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+            /* CHANGE: Using gradient background instead of external image to avoid CORS issues */
+            /* To use your own image: Download the image, save it in the same folder as this HTML file,
+               and replace the background below with: background-image: url('your-image-name.jpg'); */
+            background: linear-gradient(135deg, #0a2540 0%, #1a3a52 50%, #2a4a62 100%);
             color: var(--white);
             padding: 6rem 2rem;
             text-align: center;
@@ -125,6 +123,27 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* CHANGE: Added decorative pattern overlay for visual interest */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(0, 186, 248, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(0, 186, 248, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero > * {
+            position: relative;
+            z-index: 1;
         }
 
         .hero h1 {
@@ -132,7 +151,6 @@
             margin-bottom: 1.5rem;
             line-height: 1.2;
             color: #ffffff;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.5);
         }
 
         .hero p {
@@ -142,7 +160,7 @@
             margin-left: auto;
             margin-right: auto;
             color: #ffffff;
-            text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+            opacity: 0.95;
         }
 
         .hero-stats {
@@ -155,7 +173,7 @@
 
         .stat {
             text-align: center;
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(255, 255, 255, 0.15);
             padding: 1.5rem 2rem;
             border-radius: 10px;
             backdrop-filter: blur(10px);
@@ -166,13 +184,12 @@
             font-size: 2.5rem;
             font-weight: bold;
             color: #ffffff;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
 
         .stat-label {
             font-size: 1rem;
             color: #ffffff;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+            opacity: 0.9;
         }
 
         /* Section Styles */
@@ -258,7 +275,7 @@
         }
 
         .product-card li:before {
-            content: "✓";
+            content: "\2713";
             position: absolute;
             left: 0;
             color: var(--primary-color);
@@ -690,6 +707,8 @@
         </div>
     </section>
 
+    <!-- ... existing code ... -->
+
     <!-- How It Works -->
     <section id="how-it-works">
         <h2>How Real Estate Debt Investing Works</h2>
@@ -721,7 +740,7 @@
         
         <div class="products-grid">
             <div class="product-card">
-                <div class="product-icon">🔄</div>
+                <div class="product-icon">&#128260;</div>
                 <h3>Flywheel Portfolio</h3>
                 <p><strong>Our most popular option</strong> spreads your investment across hundreds of real estate loans automatically. Just $100 gets you started with instant diversification and weekly payouts.</p>
                 <ul>
@@ -735,7 +754,7 @@
             </div>
 
             <div class="product-card">
-                <div class="product-icon">🏠</div>
+                <div class="product-icon">&#127968;</div>
                 <h3>Loans (LROs)</h3>
                 <p>Want to choose where your money goes? Our Loans let you hand-pick individual real estate projects with a $10 minimum.</p>
                 <ul>
@@ -749,7 +768,7 @@
             </div>
 
             <div class="product-card">
-                <div class="product-icon">📝</div>
+                <div class="product-icon">&#128221;</div>
                 <h3>Groundfloor Notes</h3>
                 <p>Notes are short-term investments with predictable returns and set repayment dates. $1,000 minimum with fixed 30, 90, or 360-day terms.</p>
                 <ul>
@@ -763,7 +782,7 @@
             </div>
 
             <div class="product-card">
-                <div class="product-icon">🏦</div>
+                <div class="product-icon">&#127974;</div>
                 <h3>IRA Accounts</h3>
                 <p>Invest your retirement savings tax-advantaged through Groundfloor. Build wealth for your future with real estate-backed investments.</p>
                 <ul>
@@ -785,32 +804,32 @@
         
         <div class="features-grid">
             <div class="feature">
-                <div class="feature-icon">🏘️</div>
+                <div class="feature-icon">&#127959;</div>
                 <h3>Invest Without Owning</h3>
                 <p>You earn through lending, not battling tenants or rising property values. Returns come from interest, offering passive income regardless of the market.</p>
             </div>
             <div class="feature">
-                <div class="feature-icon">🔒</div>
+                <div class="feature-icon">&#128274;</div>
                 <h3>Backed by Real Assets</h3>
                 <p>Each Groundfloor loan is backed by real property you could drive by, not just a digital asset. That tangible backing adds security when markets get shaky.</p>
             </div>
             <div class="feature">
-                <div class="feature-icon">📈</div>
+                <div class="feature-icon">&#128200;</div>
                 <h3>Built for All Markets</h3>
                 <p>We've navigated rate hikes, inflation, market swings, and a pandemic. With realized losses under 1.5%, our disciplined lending speaks for itself.</p>
             </div>
             <div class="feature">
-                <div class="feature-icon">💰</div>
+                <div class="feature-icon">&#128176;</div>
                 <h3>Low Minimums</h3>
                 <p>Start with just $100 in Flywheel or $10 for individual loans. Real estate investing is now accessible to everyone, not just the wealthy.</p>
             </div>
             <div class="feature">
-                <div class="feature-icon">⚡</div>
+                <div class="feature-icon">&#9889;</div>
                 <h3>Fast & Flexible</h3>
                 <p>Short-term loans mean your money isn't locked up for years. Most loans mature within 6-24 months with regular repayments along the way.</p>
             </div>
             <div class="feature">
-                <div class="feature-icon">🎯</div>
+                <div class="feature-icon">&#127919;</div>
                 <h3>Instant Diversification</h3>
                 <p>With Flywheel, your funds automatically spread across hundreds of loans, minimizing risk and optimizing your investment strategy.</p>
             </div>
@@ -824,7 +843,7 @@
         
         <div class="products-grid">
             <div class="product-card">
-                <div class="product-icon">🔨</div>
+                <div class="product-icon">&#128296;</div>
                 <h3>Fix & Flip Loans</h3>
                 <p>Fund property purchases and renovations with speed.</p>
                 <ul>
@@ -836,7 +855,7 @@
             </div>
 
             <div class="product-card">
-                <div class="product-icon">🏗️</div>
+                <div class="product-icon">&#127959;</div>
                 <h3>New Construction Loans</h3>
                 <p>Finance new builds from start to completion.</p>
                 <ul>
@@ -848,7 +867,7 @@
             </div>
 
             <div class="product-card">
-                <div class="product-icon">🌉</div>
+                <div class="product-icon">&#127753;</div>
                 <h3>Bridge Loans</h3>
                 <p>Close quickly before selling your current property.</p>
                 <ul>
@@ -860,7 +879,7 @@
             </div>
 
             <div class="product-card">
-                <div class="product-icon">🏢</div>
+                <div class="product-icon">&#127970;</div>
                 <h3>DSCR Loans</h3>
                 <p>Finance rentals using property income, not personal income.</p>
                 <ul>
@@ -876,19 +895,19 @@
             <h3>Why Choose Groundfloor Lending?</h3>
             <div class="features-grid">
                 <div class="feature">
-                    <h4 style="color: white;">⚡ Fast Approval</h4>
+                    <h4 style="color: white;">&#9889; Fast Approval</h4>
                     <p style="color: white;">10-minute application, same-day answer, 7-day closing</p>
                 </div>
                 <div class="feature">
-                    <h4 style="color: white;">🤝 Personal Relationship</h4>
+                    <h4 style="color: white;">&#129309; Personal Relationship</h4>
                     <p style="color: white;">One point of contact, direct access to decision-makers</p>
                 </div>
                 <div class="feature">
-                    <h4 style="color: white;">📊 Growth-Oriented</h4>
+                    <h4 style="color: white;">&#128202; Growth-Oriented</h4>
                     <p style="color: white;">Scale your investments with better terms as you grow</p>
                 </div>
                 <div class="feature">
-                    <h4 style="color: white;">🎯 Flexible Solutions</h4>
+                    <h4 style="color: white;">&#127919; Flexible Solutions</h4>
                     <p style="color: white;">Customized loan structures that fit your strategy</p>
                 </div>
             </div>
@@ -1095,22 +1114,22 @@
         
         <div class="contact-grid">
             <div class="contact-card">
-                <h4>📧 Investor Support</h4>
+                <h4>&#128231; Investor Support</h4>
                 <p><a href="mailto:support@groundfloor.com">support@groundfloor.com</a></p>
                 <p>404-850-9223</p>
             </div>
             <div class="contact-card">
-                <h4>🏗️ New Borrower Inquiries</h4>
+                <h4>&#127959; New Borrower Inquiries</h4>
                 <p><a href="mailto:lending@groundfloor.com">lending@groundfloor.com</a></p>
                 <p>404-850-9224</p>
             </div>
             <div class="contact-card">
-                <h4>💼 Borrower Servicing</h4>
+                <h4>&#128188; Borrower Servicing</h4>
                 <p><a href="mailto:servicing@groundfloor.com">servicing@groundfloor.com</a></p>
                 <p>404-566-9686</p>
             </div>
             <div class="contact-card">
-                <h4>📰 Media Contact</h4>
+                <h4>&#128240; Media Contact</h4>
                 <p><a href="mailto:press@groundfloor.com">press@groundfloor.com</a></p>
                 <p>Hela Sheth</p>
             </div>
@@ -1135,22 +1154,22 @@
 
         <div class="features-grid mt-2">
             <div class="feature">
-                <div class="feature-icon">💰</div>
+                <div class="feature-icon">&#128176;</div>
                 <h4>Competitive Salary</h4>
                 <p>Because we know you are valuable</p>
             </div>
             <div class="feature">
-                <div class="feature-icon">🏠</div>
+                <div class="feature-icon">&#127968;</div>
                 <h4>Remote Work Friendly</h4>
                 <p>Set up your dream home office</p>
             </div>
             <div class="feature">
-                <div class="feature-icon">👨‍👩‍👧‍👦</div>
+                <div class="feature-icon">&#128106;&#8205;&#128105;&#8205;&#128103;&#8205;&#128102;</div>
                 <h4>Built for Families</h4>
                 <p>Take time to build yours</p>
             </div>
             <div class="feature">
-                <div class="feature-icon">📈</div>
+                <div class="feature-icon">&#128200;</div>
                 <h4>Equity Options</h4>
                 <p>Own a piece of our future</p>
             </div>
@@ -1209,7 +1228,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2025 Groundfloor. All rights reserved.</p>
+            <p>&copy; 2025 Groundfloor. All rights reserved.</p>
             <p style="margin-top: 1rem; font-size: 0.9rem;">
                 Securities offered through Regulation A. Past performance does not guarantee future results. All investments involve risk of loss. 
                 Please see our offering circulars for complete information. Neither the SEC nor any state securities commission has approved or disapproved these securities.
