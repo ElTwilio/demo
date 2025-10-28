@@ -111,16 +111,28 @@
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, var(--secondary-color) 0%, #1a3a52 100%);
+            background-image: 
+                linear-gradient(to bottom, rgba(10, 37, 64, 0.7), rgba(10, 37, 64, 0.85)),
+                url('/placeholder.svg?height=800&width=1600');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             color: var(--white);
             padding: 6rem 2rem;
             text-align: center;
+            min-height: 600px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         .hero h1 {
             font-size: 3.5rem;
             margin-bottom: 1.5rem;
             line-height: 1.2;
+            color: var(--white);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
 
         .hero p {
@@ -129,7 +141,8 @@
             max-width: 800px;
             margin-left: auto;
             margin-right: auto;
-            opacity: 0.9;
+            color: var(--white);
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
         }
 
         .hero-stats {
@@ -142,17 +155,23 @@
 
         .stat {
             text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem 2rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
         }
 
         .stat-number {
             font-size: 2.5rem;
             font-weight: bold;
-            color: var(--primary-color);
+            color: var(--white);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
 
         .stat-label {
             font-size: 1rem;
-            opacity: 0.8;
+            color: var(--white);
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
         }
 
         /* Section Styles */
@@ -220,6 +239,11 @@
             margin-bottom: 1rem;
         }
 
+        .product-card p {
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
         .product-card ul {
             list-style: none;
             margin: 1.5rem 0;
@@ -229,6 +253,7 @@
             padding: 0.5rem 0;
             padding-left: 1.5rem;
             position: relative;
+            color: var(--text-dark);
         }
 
         .product-card li:before {
@@ -255,6 +280,15 @@
         .feature-icon {
             font-size: 3rem;
             margin-bottom: 1rem;
+        }
+
+        .feature h3,
+        .feature h4 {
+            color: var(--secondary-color);
+        }
+
+        .feature p {
+            color: var(--text-light);
         }
 
         /* Login/Signup Forms */
@@ -285,6 +319,8 @@
             border-radius: 5px;
             font-size: 1rem;
             transition: border-color 0.3s;
+            color: var(--text-dark);
+            background: var(--white);
         }
 
         .form-group input:focus {
@@ -336,6 +372,14 @@
             position: relative;
         }
 
+        .step h3 {
+            color: var(--secondary-color);
+        }
+
+        .step p {
+            color: var(--text-light);
+        }
+
         .step-number {
             width: 60px;
             height: 60px;
@@ -364,6 +408,7 @@
             border-radius: 10px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.1);
             font-style: italic;
+            color: var(--text-dark);
         }
 
         .testimonial-author {
@@ -425,9 +470,17 @@
             margin-bottom: 1rem;
         }
 
+        .contact-card p {
+            color: var(--text-dark);
+        }
+
         .contact-card a {
             color: var(--secondary-color);
             text-decoration: none;
+        }
+
+        .contact-card a:hover {
+            color: var(--primary-color);
         }
 
         /* Footer */
@@ -473,6 +526,7 @@
             padding-top: 2rem;
             border-top: 1px solid rgba(255,255,255,0.1);
             opacity: 0.7;
+            color: var(--white);
         }
 
         /* Responsive */
@@ -498,6 +552,14 @@
             .steps,
             .testimonials {
                 grid-template-columns: 1fr;
+            }
+
+            .hero-stats {
+                gap: 1.5rem;
+            }
+
+            .stat {
+                padding: 1rem 1.5rem;
             }
         }
 
@@ -538,6 +600,10 @@
             margin-bottom: 1rem;
         }
 
+        .highlight-box p {
+            color: var(--white);
+        }
+
         /* Blog Grid */
         .blog-grid {
             display: grid;
@@ -565,6 +631,10 @@
         .blog-card h4 {
             color: var(--secondary-color);
             margin-bottom: 0.5rem;
+        }
+
+        .blog-card p {
+            color: var(--text-dark);
         }
 
         .blog-meta {
@@ -805,20 +875,20 @@
             <h3>Why Choose Groundfloor Lending?</h3>
             <div class="features-grid">
                 <div class="feature">
-                    <h4>⚡ Fast Approval</h4>
-                    <p>10-minute application, same-day answer, 7-day closing</p>
+                    <h4 style="color: white;">⚡ Fast Approval</h4>
+                    <p style="color: white;">10-minute application, same-day answer, 7-day closing</p>
                 </div>
                 <div class="feature">
-                    <h4>🤝 Personal Relationship</h4>
-                    <p>One point of contact, direct access to decision-makers</p>
+                    <h4 style="color: white;">🤝 Personal Relationship</h4>
+                    <p style="color: white;">One point of contact, direct access to decision-makers</p>
                 </div>
                 <div class="feature">
-                    <h4>📊 Growth-Oriented</h4>
-                    <p>Scale your investments with better terms as you grow</p>
+                    <h4 style="color: white;">📊 Growth-Oriented</h4>
+                    <p style="color: white;">Scale your investments with better terms as you grow</p>
                 </div>
                 <div class="feature">
-                    <h4>🎯 Flexible Solutions</h4>
-                    <p>Customized loan structures that fit your strategy</p>
+                    <h4 style="color: white;">🎯 Flexible Solutions</h4>
+                    <p style="color: white;">Customized loan structures that fit your strategy</p>
                 </div>
             </div>
         </div>
@@ -1047,7 +1117,7 @@
 
         <div class="text-center mt-2">
             <h3>Visit Our Office</h3>
-            <p>1201 Peachtree St NE, Suite 1104-400<br>Atlanta, GA 30361</p>
+            <p style="color: var(--text-dark);">1201 Peachtree St NE, Suite 1104-400<br>Atlanta, GA 30361</p>
         </div>
     </section>
 
