@@ -1,1 +1,1214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Groundfloor - Real Estate Investing Reimagined</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        :root {
+            --primary-color: #00baf8;
+            --secondary-color: #0a2540;
+            --accent-color: #ff6b35;
+            --text-dark: #1a1a1a;
+            --text-light: #666;
+            --bg-light: #f8f9fa;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--secondary-color);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            color: var(--white);
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: #0099cc;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--secondary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #1a3a52 100%);
+            color: var(--white);
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        section:nth-child(even) {
+            background: var(--bg-light);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Product Cards */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .product-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .product-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .product-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .product-card ul {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .product-card li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .product-card li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Login/Signup Forms */
+        .auth-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 1rem;
+            background: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .form-submit:hover {
+            background: #0099cc;
+        }
+
+        .form-footer {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: var(--text-light);
+        }
+
+        .form-footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        /* How It Works */
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .step {
+            text-align: center;
+            padding: 2rem;
+            background: var(--white);
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-color);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            margin-top: 1rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            font-style: normal;
+        }
+
+        /* FAQ */
+        .faq-item {
+            background: var(--white);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .faq-item:hover {
+            background: #f0f0f0;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            color: var(--secondary-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            margin-top: 1rem;
+            color: var(--text-light);
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        /* Contact */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .contact-card h4 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .contact-card a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary-color);
+            color: var(--white);
+            padding: 3rem 2rem 1rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: var(--white);
+            text-decoration: none;
+            display: block;
+            padding: 0.3rem 0;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .footer-section a:hover {
+            opacity: 1;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            opacity: 0.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .products-grid,
+            .features-grid,
+            .steps,
+            .testimonials {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Utility Classes */
+        .text-center {
+            text-align: center;
+        }
+
+        .mt-2 {
+            margin-top: 2rem;
+        }
+
+        .mb-2 {
+            margin-bottom: 2rem;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, var(--primary-color), #0099cc);
+            color: var(--white);
+            padding: 3rem;
+            border-radius: 10px;
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .highlight-box h3 {
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        /* Blog Grid */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .blog-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .blog-card-content {
+            padding: 1.5rem;
+        }
+
+        .blog-card h4 {
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-meta {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#home" class="logo">GROUNDFLOOR</a>
+            <ul class="nav-links">
+                <li><a href="#products">Invest</a></li>
+                <li><a href="#borrow">Borrow</a></li>
+                <li><a href="#why">Why Groundfloor</a></li>
+                <li><a href="#education">Learn</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="nav-buttons">
+                <a href="#login" class="btn btn-secondary">Log In</a>
+                <a href="#signup" class="btn btn-primary">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <h1>Passive Income Backed by Real Estate</h1>
+        <p>Alternative investing shouldn't be reserved for the wealthy. With Groundfloor, anyone can invest in short-term real estate loans that deliver steady returns without buying property or managing tenants.</p>
+        <a href="#signup" class="btn btn-primary" style="font-size: 1.2rem; padding: 1rem 2rem;">Start Investing</a>
+        
+        <div class="hero-stats">
+            <div class="stat">
+                <div class="stat-number">250K+</div>
+                <div class="stat-label">Registered Investors</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">$2.2B+</div>
+                <div class="stat-label">Invested</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">$80M+</div>
+                <div class="stat-label">Interest Earned</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">12</div>
+                <div class="stat-label">Years in Business</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works">
+        <h2>How Real Estate Debt Investing Works</h2>
+        <p class="section-subtitle">Groundfloor lets you start investing with as little as $100. Choose from a variety of real estate-based investment products or opt for an automated, diversified portfolio.</p>
+        
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Fund Renovations</h3>
+                <p>Invest in real estate products with low minimums starting at just $100.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Earn Interest</h3>
+                <p>Grow your investments with interest as borrowers repay their loans.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Get Repaid</h3>
+                <p>Repaid loans return money to you, which you can withdraw or reinvest.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Investment Products -->
+    <section id="products">
+        <h2>Grow Your Portfolio with Groundfloor</h2>
+        <p class="section-subtitle">Real estate investing used to be reserved for big banks and the wealthy. We've opened the door with three ways to grow your money.</p>
+        
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-icon">🔄</div>
+                <h3>Flywheel Portfolio</h3>
+                <p><strong>Our most popular option</strong> spreads your investment across hundreds of real estate loans automatically. Just $100 gets you started with instant diversification and weekly payouts.</p>
+                <ul>
+                    <li>Recommended for new investors</li>
+                    <li>Chosen by 76% of Groundfloor users</li>
+                    <li>Perfect for busy professionals</li>
+                    <li>11.5% average returns*</li>
+                    <li>Weekly payouts</li>
+                </ul>
+                <a href="#signup" class="btn btn-primary mt-2">Explore Flywheel</a>
+            </div>
+
+            <div class="product-card">
+                <div class="product-icon">🏠</div>
+                <h3>Loans (LROs)</h3>
+                <p>Want to choose where your money goes? Our Loans let you hand-pick individual real estate projects with a $10 minimum.</p>
+                <ul>
+                    <li>Works for beginners and pros</li>
+                    <li>Detailed property information</li>
+                    <li>Track progress with real-time updates</li>
+                    <li>Interest rates from 5% to 15%*</li>
+                    <li>Full control over investments</li>
+                </ul>
+                <a href="#signup" class="btn btn-primary mt-2">Explore Loans</a>
+            </div>
+
+            <div class="product-card">
+                <div class="product-icon">📝</div>
+                <h3>Groundfloor Notes</h3>
+                <p>Notes are short-term investments with predictable returns and set repayment dates. $1,000 minimum with fixed 30, 90, or 360-day terms.</p>
+                <ul>
+                    <li>5-7% returns*</li>
+                    <li>Terms from 30 to 360 days</li>
+                    <li>Portfolio backed by diversified loans</li>
+                    <li>Predictable income</li>
+                    <li>No market exposure</li>
+                </ul>
+                <a href="#signup" class="btn btn-primary mt-2">Explore Notes</a>
+            </div>
+
+            <div class="product-card">
+                <div class="product-icon">🏦</div>
+                <h3>IRA Accounts</h3>
+                <p>Invest your retirement savings tax-advantaged through Groundfloor. Build wealth for your future with real estate-backed investments.</p>
+                <ul>
+                    <li>Tax-advantaged investing</li>
+                    <li>Traditional and Roth IRAs</li>
+                    <li>Self-directed options</li>
+                    <li>Same great returns</li>
+                    <li>Secure your retirement</li>
+                </ul>
+                <a href="#signup" class="btn btn-primary mt-2">Learn About IRAs</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Groundfloor -->
+    <section id="why">
+        <h2>Why Groundfloor Is Different</h2>
+        <p class="section-subtitle">We're not just another investing platform. Groundfloor stands apart from other real estate investment options in three important ways.</p>
+        
+        <div class="features-grid">
+            <div class="feature">
+                <div class="feature-icon">🏘️</div>
+                <h3>Invest Without Owning</h3>
+                <p>You earn through lending, not battling tenants or rising property values. Returns come from interest, offering passive income regardless of the market.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🔒</div>
+                <h3>Backed by Real Assets</h3>
+                <p>Each Groundfloor loan is backed by real property you could drive by, not just a digital asset. That tangible backing adds security when markets get shaky.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">📈</div>
+                <h3>Built for All Markets</h3>
+                <p>We've navigated rate hikes, inflation, market swings, and a pandemic. With realized losses under 1.5%, our disciplined lending speaks for itself.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">💰</div>
+                <h3>Low Minimums</h3>
+                <p>Start with just $100 in Flywheel or $10 for individual loans. Real estate investing is now accessible to everyone, not just the wealthy.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">⚡</div>
+                <h3>Fast & Flexible</h3>
+                <p>Short-term loans mean your money isn't locked up for years. Most loans mature within 6-24 months with regular repayments along the way.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🎯</div>
+                <h3>Instant Diversification</h3>
+                <p>With Flywheel, your funds automatically spread across hundreds of loans, minimizing risk and optimizing your investment strategy.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Borrowing Section -->
+    <section id="borrow">
+        <h2>Fund Your Next Deal. Fast.</h2>
+        <p class="section-subtitle">Fast & Flexible Real Estate Loans for Investors. Get real estate investment funding in as little as 7 days.</p>
+        
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-icon">🔨</div>
+                <h3>Fix & Flip Loans</h3>
+                <p>Fund property purchases and renovations with speed.</p>
+                <ul>
+                    <li>Covers purchase and rehab costs</li>
+                    <li>Flexible draws for each stage</li>
+                    <li>Built for fast-moving deals</li>
+                    <li>Rates starting at 9.99%</li>
+                </ul>
+            </div>
+
+            <div class="product-card">
+                <div class="product-icon">🏗️</div>
+                <h3>New Construction Loans</h3>
+                <p>Finance new builds from start to completion.</p>
+                <ul>
+                    <li>Fund construction from start to finish</li>
+                    <li>Staged draws for every phase</li>
+                    <li>Finance with confidence</li>
+                    <li>6-18 month terms</li>
+                </ul>
+            </div>
+
+            <div class="product-card">
+                <div class="product-icon">🌉</div>
+                <h3>Bridge Loans</h3>
+                <p>Close quickly before selling your current property.</p>
+                <ul>
+                    <li>Short-term funding for fast closings</li>
+                    <li>Secure next property before you sell</li>
+                    <li>Great for timing gaps</li>
+                    <li>No monthly payments</li>
+                </ul>
+            </div>
+
+            <div class="product-card">
+                <div class="product-icon">🏢</div>
+                <h3>DSCR Loans</h3>
+                <p>Finance rentals using property income, not personal income.</p>
+                <ul>
+                    <li>Use rental income to qualify</li>
+                    <li>Build long-term wealth</li>
+                    <li>Short or long-term rentals</li>
+                    <li>No tax returns required</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="highlight-box mt-2">
+            <h3>Why Choose Groundfloor Lending?</h3>
+            <div class="features-grid">
+                <div class="feature">
+                    <h4>⚡ Fast Approval</h4>
+                    <p>10-minute application, same-day answer, 7-day closing</p>
+                </div>
+                <div class="feature">
+                    <h4>🤝 Personal Relationship</h4>
+                    <p>One point of contact, direct access to decision-makers</p>
+                </div>
+                <div class="feature">
+                    <h4>📊 Growth-Oriented</h4>
+                    <p>Scale your investments with better terms as you grow</p>
+                </div>
+                <div class="feature">
+                    <h4>🎯 Flexible Solutions</h4>
+                    <p>Customized loan structures that fit your strategy</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Login Section -->
+    <section id="login">
+        <h2>Welcome Back</h2>
+        <p class="section-subtitle">Log in to your Groundfloor account</p>
+        
+        <div class="auth-container">
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email Address</label>
+                    <input type="email" id="loginEmail" placeholder="your@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="form-submit">Log In</button>
+                <div class="form-footer">
+                    <p>Don't have an account? <a href="#signup">Sign up</a></p>
+                    <p><a href="#forgot">Forgot password?</a></p>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Signup Section -->
+    <section id="signup">
+        <h2>Welcome to Groundfloor!</h2>
+        <p class="section-subtitle">Let's get started with setting up your Groundfloor account</p>
+        
+        <div class="auth-container">
+            <form id="signupForm">
+                <div class="form-group">
+                    <label for="signupName">Full Name</label>
+                    <input type="text" id="signupName" placeholder="John Doe" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupEmail">Email Address</label>
+                    <input type="email" id="signupEmail" placeholder="your@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupPassword">Password</label>
+                    <input type="password" id="signupPassword" placeholder="Create a password" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupConfirm">Confirm Password</label>
+                    <input type="password" id="signupConfirm" placeholder="Confirm your password" required>
+                </div>
+                <button type="submit" class="form-submit">Get Started</button>
+                <div class="form-footer">
+                    <p>Already have an account? <a href="#login">Log in</a></p>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Education Hub -->
+    <section id="education">
+        <h2>Groundfloor Education Hub</h2>
+        <p class="section-subtitle">Learn how to manage, grow, and budget finances with Groundfloor</p>
+        
+        <div class="blog-grid">
+            <div class="blog-card">
+                <div class="blog-card-content">
+                    <h4>How to Start Investing</h4>
+                    <div class="blog-meta">October 6, 2025</div>
+                    <p>Everyone should have the freedom to invest on their terms. Learn the basics of getting started with real estate investing.</p>
+                </div>
+            </div>
+            <div class="blog-card">
+                <div class="blog-card-content">
+                    <h4>Investment Insights Q3 2025</h4>
+                    <div class="blog-meta">October 13, 2025</div>
+                    <p>Quarterly analysis of Groundfloor's investment performance and market trends.</p>
+                </div>
+            </div>
+            <div class="blog-card">
+                <div class="blog-card-content">
+                    <h4>Preferred Equity vs Mezzanine Debt</h4>
+                    <div class="blog-meta">September 16, 2025</div>
+                    <p>Understanding different real estate investment structures and their benefits.</p>
+                </div>
+            </div>
+            <div class="blog-card">
+                <div class="blog-card-content">
+                    <h4>What Is Fractional Real Estate?</h4>
+                    <div class="blog-meta">September 11, 2025</div>
+                    <p>Learn about fractional real estate investing and how it democratizes access to property investments.</p>
+                </div>
+            </div>
+            <div class="blog-card">
+                <div class="blog-card-content">
+                    <h4>Self-Directed IRA for Real Estate</h4>
+                    <div class="blog-meta">September 2025</div>
+                    <p>What you need to know about using your retirement savings for real estate investments.</p>
+                </div>
+            </div>
+            <div class="blog-card">
+                <div class="blog-card-content">
+                    <h4>Investing in Real Estate Debt</h4>
+                    <div class="blog-meta">Video Tutorial</div>
+                    <p>Brian shares the benefits of investing in real estate debt as an individual investor.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials">
+        <h2>What Our Community Says</h2>
+        <p class="section-subtitle">Join over 250,000 investors who trust Groundfloor</p>
+        
+        <div class="testimonials">
+            <div class="testimonial">
+                <p>"I'm proud of the work I'm able to do with Groundfloor. My team does such a great job of listening to everyone's ideas and giving us the space to tackle new projects."</p>
+                <div class="testimonial-author">— Mark, Investor</div>
+            </div>
+            <div class="testimonial">
+                <p>"I love the fact that as an employee, you are given the opportunity to chart your own path. I have the opportunity to engage with knowledgeable professionals that further my understanding of real estate."</p>
+                <div class="testimonial-author">— Sarah, Team Member</div>
+            </div>
+            <div class="testimonial">
+                <p>"Our mission has never been stronger or more relevant. I'm proud to work at a company that is helping everyone build a more solid financial future."</p>
+                <div class="testimonial-author">— James, Investor</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq">
+        <h2>Frequently Asked Questions</h2>
+        <p class="section-subtitle">Get answers to common questions about Groundfloor</p>
+        
+        <div class="faq-item" onclick="toggleFAQ(this)">
+            <div class="faq-question">
+                How does Groundfloor work?
+                <span>+</span>
+            </div>
+            <div class="faq-answer">
+                Groundfloor lets you invest in short-term real estate loans individually or through our diversified Flywheel Portfolio. You fund loans, earn interest as borrowers repay, and get your principal back when projects complete.
+            </div>
+        </div>
+
+        <div class="faq-item" onclick="toggleFAQ(this)">
+            <div class="faq-question">
+                What is the minimum investment?
+                <span>+</span>
+            </div>
+            <div class="faq-answer">
+                The minimum investment is $100 for the Flywheel Portfolio, $10 for individual Loans (LROs), and $1,000 for Notes. This makes real estate investing accessible to everyone.
+            </div>
+        </div>
+
+        <div class="faq-item" onclick="toggleFAQ(this)">
+            <div class="faq-question">
+                What returns can I expect?
+                <span>+</span>
+            </div>
+            <div class="faq-answer">
+                The Flywheel Portfolio has delivered an average 11.5% return since launch. Individual loans offer rates from 5% to 15%, and Notes provide 5-7% returns. Past performance doesn't guarantee future results.
+            </div>
+        </div>
+
+        <div class="faq-item" onclick="toggleFAQ(this)">
+            <div class="faq-question">
+                What are the risks?
+                <span>+</span>
+            </div>
+            <div class="faq-answer">
+                Like all investments, Groundfloor carries risk. Borrowers may default, and you could lose some or all of your investment. However, each loan is backed by real property, and diversification through Flywheel helps minimize risk.
+            </div>
+        </div>
+
+        <div class="faq-item" onclick="toggleFAQ(this)">
+            <div class="faq-question">
+                How long is my money invested?
+                <span>+</span>
+            </div>
+            <div class="faq-answer">
+                Most loans mature within 6-24 months. The Flywheel Portfolio is designed as a 36-month investment, though you'll receive regular repayments along the way. Notes have fixed terms of 30, 90, or 360 days.
+            </div>
+        </div>
+
+        <div class="faq-item" onclick="toggleFAQ(this)">
+            <div class="faq-question">
+                Can I withdraw my money?
+                <span>+</span>
+            </div>
+            <div class="faq-answer">
+                You can withdraw funds as loans are repaid. With Flywheel, you can turn off auto-reinvesting and withdraw repayments. Individual loans and Notes return your principal at maturity.
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p class="section-subtitle">We're here to help Monday – Friday, 9 A.M. to 5 P.M. EST</p>
+        
+        <div class="contact-grid">
+            <div class="contact-card">
+                <h4>📧 Investor Support</h4>
+                <p><a href="mailto:support@groundfloor.com">support@groundfloor.com</a></p>
+                <p>404-850-9223</p>
+            </div>
+            <div class="contact-card">
+                <h4>🏗️ New Borrower Inquiries</h4>
+                <p><a href="mailto:lending@groundfloor.com">lending@groundfloor.com</a></p>
+                <p>404-850-9224</p>
+            </div>
+            <div class="contact-card">
+                <h4>💼 Borrower Servicing</h4>
+                <p><a href="mailto:servicing@groundfloor.com">servicing@groundfloor.com</a></p>
+                <p>404-566-9686</p>
+            </div>
+            <div class="contact-card">
+                <h4>📰 Media Contact</h4>
+                <p><a href="mailto:press@groundfloor.com">press@groundfloor.com</a></p>
+                <p>Hela Sheth</p>
+            </div>
+        </div>
+
+        <div class="text-center mt-2">
+            <h3>Visit Our Office</h3>
+            <p>1201 Peachtree St NE, Suite 1104-400<br>Atlanta, GA 30361</p>
+        </div>
+    </section>
+
+    <!-- Culture Section -->
+    <section id="culture">
+        <h2>The People of Groundfloor</h2>
+        <p class="section-subtitle">Join our team and help democratize real estate investing</p>
+        
+        <div class="highlight-box">
+            <h3>We're Hiring!</h3>
+            <p>Help us make private lending public. Groundfloor is a first-of-its-kind investment platform that gives both non-accredited and accredited investors direct access to short-term, high-yield returns backed by real estate.</p>
+            <a href="#contact" class="btn btn-secondary mt-2">View Open Roles</a>
+        </div>
+
+        <div class="features-grid mt-2">
+            <div class="feature">
+                <div class="feature-icon">💰</div>
+                <h4>Competitive Salary</h4>
+                <p>Because we know you are valuable</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🏠</div>
+                <h4>Remote Work Friendly</h4>
+                <p>Set up your dream home office</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">👨‍👩‍👧‍👦</div>
+                <h4>Built for Families</h4>
+                <p>Take time to build yours</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">📈</div>
+                <h4>Equity Options</h4>
+                <p>Own a piece of our future</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Invest</h4>
+                <ul>
+                    <li><a href="#products">Flywheel Portfolio</a></li>
+                    <li><a href="#products">Loans (LROs)</a></li>
+                    <li><a href="#products">Notes</a></li>
+                    <li><a href="#products">IRA Accounts</a></li>
+                    <li><a href="#signup">Get Started</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Borrow</h4>
+                <ul>
+                    <li><a href="#borrow">Fix & Flip Loans</a></li>
+                    <li><a href="#borrow">New Construction</a></li>
+                    <li><a href="#borrow">Bridge Loans</a></li>
+                    <li><a href="#borrow">DSCR Loans</a></li>
+                    <li><a href="#borrow">Apply Now</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Learn</h4>
+                <ul>
+                    <li><a href="#education">Education Hub</a></li>
+                    <li><a href="#education">Blog</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#contact">Support</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>About</h4>
+                <ul>
+                    <li><a href="#why">Why Groundfloor</a></li>
+                    <li><a href="#culture">Culture & Careers</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                    <li><a href="#home">Press</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#home">Privacy Policy</a></li>
+                    <li><a href="#home">Terms of Service</a></li>
+                    <li><a href="#home">SEC Filings</a></li>
+                    <li><a href="#home">Offering Circular</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Groundfloor. All rights reserved.</p>
+            <p style="margin-top: 1rem; font-size: 0.9rem;">
+                Securities offered through Regulation A. Past performance does not guarantee future results. All investments involve risk of loss. 
+                Please see our offering circulars for complete information. Neither the SEC nor any state securities commission has approved or disapproved these securities.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Toggle
+        function toggleFAQ(element) {
+            element.classList.toggle('active');
+            const icon = element.querySelector('.faq-question span');
+            icon.textContent = element.classList.contains('active') ? '−' : '+';
+        }
+
+        // Form Submissions (Demo)
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Login functionality would connect to Groundfloor authentication system.\n\nThis is a demo mockup for GitHub Pages.');
+        });
+
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const password = document.getElementById('signupPassword').value;
+            const confirm = document.getElementById('signupConfirm').value;
+            
+            if (password !== confirm) {
+                alert('Passwords do not match!');
+                return;
+            }
+            
+            alert('Signup functionality would create a new Groundfloor account.\n\nThis is a demo mockup for GitHub Pages.');
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
