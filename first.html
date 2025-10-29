@@ -113,15 +113,13 @@
         /* Hero Section */
         /* Using crossorigin attribute and fallback background */
         .hero {
-            /* Try to load the image with crossorigin, fallback to gradient if it fails */
-            background-image: 
-                linear-gradient(to bottom, rgba(10, 37, 64, 0.4), rgba(10, 37, 64, 0.85)),
-                url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/onboarding-background-min-DNhBbaVw-QkTjyISPI4XNJ3c5wY3UZU59YHupl9.jpeg');
+            /* Fallback to light mint/teal color if image doesn't load */
+            background-color: rgb(182, 227, 212);
+            /* Try to load the image without dark overlay */
+            background-image: url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/onboarding-background-min-DNhBbaVw-QkTjyISPI4XNJ3c5wY3UZU59YHupl9.jpeg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            /* Updated fallback background color to light mint/teal */
-            background-color: rgb(182, 227, 212);
             color: var(--white);
             padding: 6rem 2rem;
             text-align: center;
@@ -134,15 +132,15 @@
             overflow: hidden;
         }
 
-        /* Dark gradient overlay at bottom like Groundfloor login */
+        /* Lightened the gradient overlay at bottom to let background color show through more */
         .hero::before {
             content: '';
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
-            height: 60%;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.5) 50%, transparent 100%);
+            height: 40%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.3) 0%, transparent 100%);
             pointer-events: none;
             z-index: 0;
         }
