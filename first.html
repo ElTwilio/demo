@@ -684,6 +684,228 @@
             font-size: 0.9rem;
             margin-bottom: 1rem;
         }
+
+        /* Added styles for user greeting in nav */
+        .user-greeting {
+            color: var(--white);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-greeting span {
+            color: var(--primary-color);
+        }
+
+        .logout-btn {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: var(--white);
+            color: var(--secondary-color);
+        }
+
+        /* Added modal styles for product purchase */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            overflow-y: auto;
+        }
+
+        .modal.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .modal-content {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 15px;
+            max-width: 600px;
+            width: 100%;
+            position: relative;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.3);
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            color: var(--text-light);
+            cursor: pointer;
+            background: none;
+            border: none;
+            transition: color 0.3s;
+        }
+
+        .modal-close:hover {
+            color: var(--text-dark);
+        }
+
+        .modal-header {
+            margin-bottom: 2rem;
+        }
+
+        .modal-header h2 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            text-align: left;
+        }
+
+        .modal-header p {
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+
+        .modal-body {
+            margin-bottom: 2rem;
+        }
+
+        .modal-body h3 {
+            color: var(--secondary-color);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .modal-body ul {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-body li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--text-dark);
+        }
+
+        .modal-body li:before {
+            content: "\2713";
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .investment-form {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+        }
+
+        .investment-form h4 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .amount-input-group {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .amount-input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+
+        .amount-input-group input {
+            width: 100%;
+            padding: 1rem;
+            padding-left: 2.5rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: border-color 0.3s;
+        }
+
+        .amount-input-group input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .amount-input-group::before {
+            content: '$';
+            position: absolute;
+            left: 1rem;
+            bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .min-investment-note {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .invest-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .invest-btn:hover {
+            background: #0099cc;
+        }
+
+        .invest-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        @media (max-width: 768px) {
+            .modal-content {
+                padding: 2rem;
+                margin: 1rem;
+            }
+
+            .user-greeting {
+                font-size: 0.9rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -698,7 +920,8 @@
                 <li><a href="#education">Learn</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <div class="nav-buttons">
+            <!-- Updated nav buttons to show user greeting when logged in -->
+            <div class="nav-buttons" id="navButtons">
                 <a href="#login" class="btn btn-secondary">Log In</a>
                 <a href="#signup" class="btn btn-primary">Get Started</a>
             </div>
@@ -781,7 +1004,8 @@
                     <li>11.5% average returns*</li>
                     <li>Weekly payouts</li>
                 </ul>
-                <a href="#signup" class="btn btn-primary mt-2">Explore Flywheel</a>
+                <!-- Updated button to trigger modal for logged-in users -->
+                <a href="#" class="btn btn-primary mt-2 product-btn" data-product="flywheel">Explore Flywheel</a>
             </div>
 
             <div class="product-card">
@@ -795,7 +1019,8 @@
                     <li>Interest rates from 5% to 15%*</li>
                     <li>Full control over investments</li>
                 </ul>
-                <a href="#signup" class="btn btn-primary mt-2">Explore Loans</a>
+                <!-- Updated button to trigger modal for logged-in users -->
+                <a href="#" class="btn btn-primary mt-2 product-btn" data-product="loans">Explore Loans</a>
             </div>
 
             <div class="product-card">
@@ -809,7 +1034,8 @@
                     <li>Predictable income</li>
                     <li>No market exposure</li>
                 </ul>
-                <a href="#signup" class="btn btn-primary mt-2">Explore Notes</a>
+                <!-- Updated button to trigger modal for logged-in users -->
+                <a href="#" class="btn btn-primary mt-2 product-btn" data-product="notes">Explore Notes</a>
             </div>
 
             <div class="product-card">
@@ -823,7 +1049,8 @@
                     <li>Same great returns</li>
                     <li>Secure your retirement</li>
                 </ul>
-                <a href="#signup" class="btn btn-primary mt-2">Learn About IRAs</a>
+                <!-- Updated button to trigger modal for logged-in users -->
+                <a href="#" class="btn btn-primary mt-2 product-btn" data-product="ira">Learn About IRAs</a>
             </div>
         </div>
     </section>
@@ -845,7 +1072,7 @@
                 <p>Each Groundfloor loan is backed by real property you could drive by, not just a digital asset. That tangible backing adds security when markets get shaky.</p>
             </div>
             <div class="feature">
-                <div class="feature-icon">&#128200;</div>
+                <div class="feature-icon">&#128100;</div>
                 <h3>Built for All Markets</h3>
                 <p>We've navigated rate hikes, inflation, market swings, and a pandemic. With realized losses under 1.5%, our disciplined lending speaks for itself.</p>
             </div>
@@ -1267,6 +1494,31 @@
         </div>
     </footer>
 
+    <!-- Added product purchase modals -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeProductModal()">&times;</button>
+            <div class="modal-header">
+                <h2 id="modalTitle"></h2>
+                <p id="modalSubtitle"></p>
+            </div>
+            <div class="modal-body">
+                <h3>Key Features</h3>
+                <ul id="modalFeatures"></ul>
+                
+                <div class="investment-form">
+                    <h4>Start Investing Today</h4>
+                    <p class="min-investment-note" id="minInvestmentNote"></p>
+                    <div class="amount-input-group">
+                        <label for="investmentAmount">Investment Amount</label>
+                        <input type="number" id="investmentAmount" placeholder="0" min="0" step="10">
+                    </div>
+                    <button class="invest-btn" onclick="processInvestment()">Invest Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div id="twilio-webchat-widget-root"></div>
     
     <script>
@@ -1279,17 +1531,46 @@
     </script>
 
     <script>
-        // FAQ Toggle
-        function toggleFAQ(element) {
-            element.classList.toggle('active');
-            const icon = element.querySelector('.faq-question span');
-            icon.textContent = element.classList.contains('active') ? '−' : '+';
+        function checkLoginState() {
+            const user = JSON.parse(localStorage.getItem('groundfloorUser'));
+            const navButtons = document.getElementById('navButtons');
+            
+            if (user && user.name) {
+                navButtons.innerHTML = `
+                    <div class="user-greeting">
+                        Welcome, <span>${user.name}</span>
+                        <button class="logout-btn" onclick="logout()">Log Out</button>
+                    </div>
+                `;
+            } else {
+                navButtons.innerHTML = `
+                    <a href="#login" class="btn btn-secondary">Log In</a>
+                    <a href="#signup" class="btn btn-primary">Get Started</a>
+                `;
+            }
         }
 
-        // Form Submissions (Demo)
+        function logout() {
+            localStorage.removeItem('groundfloorUser');
+            checkLoginState();
+            alert('You have been logged out successfully.');
+            window.location.href = '#home';
+        }
+
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Login functionality would connect to Groundfloor authentication system.\n\nThis is a demo mockup for GitHub Pages.');
+            const email = document.getElementById('loginEmail').value;
+            const name = email.split('@')[0];
+            
+            const user = {
+                name: name.charAt(0).toUpperCase() + name.slice(1),
+                email: email
+            };
+            
+            localStorage.setItem('groundfloorUser', JSON.stringify(user));
+            checkLoginState();
+            alert('Login successful! Welcome back, ' + user.name + '!');
+            window.location.href = '#products';
         });
 
         document.getElementById('signupForm').addEventListener('submit', function(e) {
@@ -1302,19 +1583,170 @@
                 return;
             }
             
-            alert('Signup functionality would create a new Groundfloor account.\n\nThis is a demo mockup for GitHub Pages.');
+            const name = document.getElementById('signupName').value;
+            const email = document.getElementById('signupEmail').value;
+            
+            const user = {
+                name: name,
+                email: email
+            };
+            
+            localStorage.setItem('groundfloorUser', JSON.stringify(user));
+            checkLoginState();
+            alert('Account created successfully! Welcome, ' + user.name + '!');
+            window.location.href = '#products';
         });
+
+        const productData = {
+            flywheel: {
+                title: 'Flywheel Portfolio',
+                subtitle: 'Automated diversification across hundreds of real estate loans',
+                features: [
+                    'Instant diversification across 100+ loans',
+                    'Weekly interest payouts',
+                    '11.5% average annual returns',
+                    'Automatic reinvestment options',
+                    'Perfect for hands-off investors',
+                    'Chosen by 76% of Groundfloor users'
+                ],
+                minInvestment: 100
+            },
+            loans: {
+                title: 'Individual Loans (LROs)',
+                subtitle: 'Hand-pick specific real estate projects to fund',
+                features: [
+                    'Choose individual properties',
+                    'Interest rates from 5% to 15%',
+                    'Detailed property information',
+                    'Real-time project updates',
+                    'Full investment control',
+                    'Terms typically 6-24 months'
+                ],
+                minInvestment: 10
+            },
+            notes: {
+                title: 'Groundfloor Notes',
+                subtitle: 'Fixed-term investments with predictable returns',
+                features: [
+                    '5-7% fixed returns',
+                    'Terms: 30, 90, or 360 days',
+                    'Backed by diversified loan portfolio',
+                    'Predictable maturity dates',
+                    'No market volatility exposure',
+                    'Simple, straightforward investing'
+                ],
+                minInvestment: 1000
+            },
+            ira: {
+                title: 'IRA Accounts',
+                subtitle: 'Tax-advantaged retirement investing in real estate',
+                features: [
+                    'Traditional and Roth IRA options',
+                    'Self-directed investment control',
+                    'Tax-deferred or tax-free growth',
+                    'Same great Groundfloor returns',
+                    'Diversify retirement portfolio',
+                    'Secure your financial future'
+                ],
+                minInvestment: 100
+            }
+        };
+
+        function openProductModal(productType) {
+            const user = JSON.parse(localStorage.getItem('groundfloorUser'));
+            
+            if (!user) {
+                alert('Please log in or create an account to invest.');
+                window.location.href = '#login';
+                return;
+            }
+
+            const product = productData[productType];
+            const modal = document.getElementById('productModal');
+            
+            document.getElementById('modalTitle').textContent = product.title;
+            document.getElementById('modalSubtitle').textContent = product.subtitle;
+            document.getElementById('minInvestmentNote').textContent = 
+                `Minimum investment: $${product.minInvestment}`;
+            
+            const featuresList = document.getElementById('modalFeatures');
+            featuresList.innerHTML = '';
+            product.features.forEach(feature => {
+                const li = document.createElement('li');
+                li.textContent = feature;
+                featuresList.appendChild(li);
+            });
+            
+            document.getElementById('investmentAmount').min = product.minInvestment;
+            document.getElementById('investmentAmount').value = product.minInvestment;
+            document.getElementById('investmentAmount').dataset.productType = productType;
+            
+            modal.classList.add('active');
+        }
+
+        function closeProductModal() {
+            const modal = document.getElementById('productModal');
+            modal.classList.remove('active');
+        }
+
+        function processInvestment() {
+            const amount = parseFloat(document.getElementById('investmentAmount').value);
+            const productType = document.getElementById('investmentAmount').dataset.productType;
+            const product = productData[productType];
+            const user = JSON.parse(localStorage.getItem('groundfloorUser'));
+            
+            if (amount < product.minInvestment) {
+                alert(`Minimum investment for ${product.title} is $${product.minInvestment}`);
+                return;
+            }
+            
+            if (isNaN(amount) || amount <= 0) {
+                alert('Please enter a valid investment amount.');
+                return;
+            }
+            
+            alert(`Success! ${user.name}, you have invested $${amount.toFixed(2)} in ${product.title}.\n\nYour investment is being processed and will appear in your portfolio shortly.`);
+            closeProductModal();
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            checkLoginState();
+            
+            document.querySelectorAll('.product-btn').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const productType = this.dataset.product;
+                    openProductModal(productType);
+                });
+            });
+            
+            // Close modal when clicking outside
+            document.getElementById('productModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeProductModal();
+                }
+            });
+        });
+
+        // FAQ Toggle
+        function toggleFAQ(element) {
+            element.classList.toggle('active');
+            const icon = element.querySelector('.faq-question span');
+            icon.textContent = element.classList.contains('active') ? '−' : '+';
+        }
 
         // Smooth scroll for navigation
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                if (!this.classList.contains('product-btn')) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
                 }
             });
         });
