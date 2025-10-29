@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Groundfloor - Real Estate Investing Reimagined</title>
     
-    <!-- Added Twilio Segment analytics script -->
+    <!-- Twilio Segment analytics script -->
     <script>
       !function(){var i="analytics",analytics=window[i]=window[i]||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","screen","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware","register"];analytics.factory=function(e){return function(){if(window[i].initialized)return window[i][e].apply(window[i],arguments);var n=Array.prototype.slice.call(arguments);if(["track","screen","alias","group","page","identify"].indexOf(e)>-1){var c=document.querySelector("link[rel='canonical']");n.push({__t:"bpc",c:c&&c.getAttribute("href")||void 0,p:location.pathname,u:location.href,s:location.search,t:document.title,r:document.referrer})}n.unshift(e);analytics.push(n);return analytics}};for(var n=0;n<analytics.methods.length;n++){var key=analytics.methods[n];analytics[key]=analytics.factory(key)}analytics.load=function(key,n){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.setAttribute("data-global-segment-analytics-key",i);t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var r=document.getElementsByTagName("script")[0];r.parentNode.insertBefore(t,r);analytics._loadOptions=n};analytics._writeKey="dNQVGKwnueKC1HcOP81wIVbtAXQCEEKE";;analytics.SNIPPET_VERSION="5.2.0";
       analytics.load("dNQVGKwnueKC1HcOP81wIVbtAXQCEEKE");
@@ -642,6 +642,11 @@
             display: none;
         }
 
+        /* Added CSS class for white text instead of inline styles */
+        .text-white {
+            color: var(--white);
+        }
+
         /* Smooth Scroll */
         html {
             scroll-behavior: smooth;
@@ -1171,21 +1176,22 @@
         <div class="highlight-box mt-2">
             <h3>Why Choose Groundfloor Lending?</h3>
             <div class="features-grid">
+                <!-- Replaced inline styles with CSS class -->
                 <div class="feature">
-                    <h4 style="color: white;">&#9889; Fast Approval</h4>
-                    <p style="color: white;">10-minute application, same-day answer, 7-day closing</p>
+                    <h4 class="text-white">&#9889; Fast Approval</h4>
+                    <p class="text-white">10-minute application, same-day answer, 7-day closing</p>
                 </div>
                 <div class="feature">
-                    <h4 style="color: white;">&#129309; Personal Relationship</h4>
-                    <p style="color: white;">One point of contact, direct access to decision-makers</p>
+                    <h4 class="text-white">&#129309; Personal Relationship</h4>
+                    <p class="text-white">One point of contact, direct access to decision-makers</p>
                 </div>
                 <div class="feature">
-                    <h4 style="color: white;">&#128202; Growth-Oriented</h4>
-                    <p style="color: white;">Scale your investments with better terms as you grow</p>
+                    <h4 class="text-white">&#128202; Growth-Oriented</h4>
+                    <p class="text-white">Scale your investments with better terms as you grow</p>
                 </div>
                 <div class="feature">
-                    <h4 style="color: white;">&#127919; Flexible Solutions</h4>
-                    <p style="color: white;">Customized loan structures that fit your strategy</p>
+                    <h4 class="text-white">&#127919; Flexible Solutions</h4>
+                    <p class="text-white">Customized loan structures that fit your strategy</p>
                 </div>
             </div>
         </div>
@@ -1325,7 +1331,8 @@
         <h2>Frequently Asked Questions</h2>
         <p class="section-subtitle">Get answers to common questions about Groundfloor</p>
         
-        <div class="faq-item" onclick="toggleFAQ(this)">
+        <!-- Removed inline onclick handlers, will use addEventListener instead -->
+        <div class="faq-item" data-faq-id="how-it-works">
             <div class="faq-question">
                 How does Groundfloor work?
                 <span>+</span>
@@ -1335,7 +1342,7 @@
             </div>
         </div>
 
-        <div class="faq-item" onclick="toggleFAQ(this)">
+        <div class="faq-item" data-faq-id="minimum-investment">
             <div class="faq-question">
                 What is the minimum investment?
                 <span>+</span>
@@ -1345,7 +1352,7 @@
             </div>
         </div>
 
-        <div class="faq-item" onclick="toggleFAQ(this)">
+        <div class="faq-item" data-faq-id="expected-returns">
             <div class="faq-question">
                 What returns can I expect?
                 <span>+</span>
@@ -1355,7 +1362,7 @@
             </div>
         </div>
 
-        <div class="faq-item" onclick="toggleFAQ(this)">
+        <div class="faq-item" data-faq-id="risks">
             <div class="faq-question">
                 What are the risks?
                 <span>+</span>
@@ -1365,7 +1372,7 @@
             </div>
         </div>
 
-        <div class="faq-item" onclick="toggleFAQ(this)">
+        <div class="faq-item" data-faq-id="investment-duration">
             <div class="faq-question">
                 How long is my money invested?
                 <span>+</span>
@@ -1375,7 +1382,7 @@
             </div>
         </div>
 
-        <div class="faq-item" onclick="toggleFAQ(this)">
+        <div class="faq-item" data-faq-id="withdrawals">
             <div class="faq-question">
                 Can I withdraw my money?
                 <span>+</span>
@@ -1515,11 +1522,10 @@
         </div>
     </footer>
 
-    <!-- Added product purchase modals -->
-    <!-- Added IDs and tracking attributes to modal elements -->
+    <!-- Product purchase modal -->
     <div id="productModal" class="modal" data-modal-type="product-purchase">
         <div class="modal-content">
-            <button class="modal-close" id="btn-close-modal" onclick="closeProductModal()" data-track-category="modal" data-track-action="close_product_modal">&times;</button>
+            <button class="modal-close" id="btn-close-modal" data-track-category="modal" data-track-action="close_product_modal">&times;</button>
             <div class="modal-header">
                 <h2 id="modalTitle"></h2>
                 <p id="modalSubtitle"></p>
@@ -1535,7 +1541,7 @@
                         <label for="investment-amount">Investment Amount</label>
                         <input type="number" id="investment-amount" name="investment_amount" placeholder="0" min="0" step="10" data-field-type="investment_amount">
                     </div>
-                    <button class="invest-btn" id="btn-invest-now" onclick="processInvestment()" data-track-category="investment" data-track-action="submit_investment">Invest Now</button>
+                    <button class="invest-btn" id="btn-invest-now" data-track-category="investment" data-track-action="submit_investment">Invest Now</button>
                 </div>
             </div>
         </div>
@@ -1543,18 +1549,31 @@
 
     
     <script>
+        let cachedElements = {};
+        
+        function getElement(id) {
+            if (!cachedElements[id]) {
+                cachedElements[id] = document.getElementById(id);
+            }
+            return cachedElements[id];
+        }
 
         function checkLoginState() {
             const user = JSON.parse(localStorage.getItem('groundfloorUser'));
-            const navButtons = document.getElementById('navButtons');
+            const navButtons = getElement('navButtons');
             
             if (user && user.name) {
                 navButtons.innerHTML = `
                     <div class="user-greeting" id="user-greeting">
                         Welcome, <span id="user-name-display">${user.name}</span>
-                        <button class="logout-btn" id="btn-logout" onclick="logout()" data-track-category="authentication" data-track-action="click_logout">Log Out</button>
+                        <button class="logout-btn" id="btn-logout" data-track-category="authentication" data-track-action="click_logout">Log Out</button>
                     </div>
                 `;
+                // Re-attach logout event listener after innerHTML change
+                const logoutBtn = getElement('btn-logout');
+                if (logoutBtn) {
+                    logoutBtn.addEventListener('click', logout);
+                }
             } else {
                 navButtons.innerHTML = `
                     <a href="#login" class="btn btn-secondary" id="btn-nav-login" data-track-category="authentication" data-track-action="click_login">Log In</a>
@@ -1586,15 +1605,25 @@
             window.location.href = '#home';
         }
 
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
+        function trackPageView(sectionName) {
+            if (typeof analytics !== 'undefined') {
+                analytics.page(sectionName, {
+                    path: window.location.pathname + window.location.hash,
+                    url: window.location.href,
+                    title: document.title + ' - ' + sectionName
+                });
+            }
+        }
+
+        getElement('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            const email = document.getElementById('user-email-login').value;
+            const email = getElement('user-email-login').value;
             const name = email.split('@')[0];
             
             const user = {
                 name: name.charAt(0).toUpperCase() + name.slice(1),
                 email: email,
-                userId: email // Using email as userId for demo purposes
+                userId: email
             };
             
             localStorage.setItem('groundfloorUser', JSON.stringify(user));
@@ -1618,23 +1647,23 @@
             window.location.href = '#products';
         });
 
-        document.getElementById('signupForm').addEventListener('submit', function(e) {
+        getElement('signupForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            const password = document.getElementById('user-password').value;
-            const confirm = document.getElementById('user-password-confirm').value;
+            const password = getElement('user-password').value;
+            const confirm = getElement('user-password-confirm').value;
             
             if (password !== confirm) {
                 alert('Passwords do not match!');
                 return;
             }
             
-            const name = document.getElementById('user-name').value;
-            const email = document.getElementById('user-email').value;
+            const name = getElement('user-name').value;
+            const email = getElement('user-email').value;
             
             const user = {
                 name: name,
                 email: email,
-                userId: email, // Using email as userId for demo purposes
+                userId: email,
                 createdAt: new Date().toISOString()
             };
             
@@ -1734,7 +1763,7 @@
             }
 
             const product = productData[productType];
-            const modal = document.getElementById('productModal');
+            const modal = getElement('productModal');
             
             // Track Product Viewed event (Ecommerce v2 spec)
             if (typeof analytics !== 'undefined') {
@@ -1748,12 +1777,12 @@
                 });
             }
             
-            document.getElementById('modalTitle').textContent = product.title;
-            document.getElementById('modalSubtitle').textContent = product.subtitle;
-            document.getElementById('minInvestmentNote').textContent = 
+            getElement('modalTitle').textContent = product.title;
+            getElement('modalSubtitle').textContent = product.subtitle;
+            getElement('minInvestmentNote').textContent = 
                 `Minimum investment: $${product.minInvestment}`;
             
-            const featuresList = document.getElementById('modalFeatures');
+            const featuresList = getElement('modalFeatures');
             featuresList.innerHTML = '';
             product.features.forEach(feature => {
                 const li = document.createElement('li');
@@ -1761,9 +1790,10 @@
                 featuresList.appendChild(li);
             });
             
-            document.getElementById('investment-amount').min = product.minInvestment;
-            document.getElementById('investment-amount').value = product.minInvestment;
-            document.getElementById('investment-amount').dataset.productType = productType;
+            const amountInput = getElement('investment-amount');
+            amountInput.min = product.minInvestment;
+            amountInput.value = product.minInvestment;
+            amountInput.dataset.productType = productType;
             
             modal.classList.add('active');
             
@@ -1787,12 +1817,12 @@
         }
 
         function closeProductModal() {
-            const modal = document.getElementById('productModal');
+            const modal = getElement('productModal');
             modal.classList.remove('active');
         }
 
         function processInvestment() {
-            const amountInput = document.getElementById('investment-amount');
+            const amountInput = getElement('investment-amount');
             const amount = parseFloat(amountInput.value);
             const productType = amountInput.dataset.productType;
             const product = productData[productType];
@@ -1845,9 +1875,16 @@
             closeProductModal();
         }
 
+        function toggleFAQ(element) {
+            element.classList.toggle('active');
+            const icon = element.querySelector('.faq-question span');
+            icon.textContent = element.classList.contains('active') ? '−' : '+';
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
             checkLoginState();
             
+            // Attach event listeners to product buttons
             document.querySelectorAll('.product-btn').forEach(button => {
                 button.addEventListener('click', function(e) {
                     e.preventDefault();
@@ -1856,32 +1893,41 @@
                 });
             });
             
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    toggleFAQ(this);
+                });
+            });
+            
             // Close modal when clicking outside
-            document.getElementById('productModal').addEventListener('click', function(e) {
+            getElement('productModal').addEventListener('click', function(e) {
                 if (e.target === this) {
                     closeProductModal();
                 }
             });
+            
+            // Attach close modal button event
+            getElement('btn-close-modal').addEventListener('click', closeProductModal);
+            
+            // Attach invest button event
+            getElement('btn-invest-now').addEventListener('click', processInvestment);
         });
 
-        // FAQ Toggle
-        function toggleFAQ(element) {
-            element.classList.toggle('active');
-            const icon = element.querySelector('.faq-question span');
-            icon.textContent = element.classList.contains('active') ? '−' : '+';
-        }
-
-        // Smooth scroll for navigation
+        // Smooth scroll for navigation with page tracking
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 if (!this.classList.contains('product-btn')) {
                     e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
+                    const targetId = this.getAttribute('href').substring(1);
+                    const target = document.getElementById(targetId);
                     if (target) {
                         target.scrollIntoView({
                             behavior: 'smooth',
                             block: 'start'
                         });
+                        
+                        const sectionName = targetId.charAt(0).toUpperCase() + targetId.slice(1).replace(/-/g, ' ');
+                        trackPageView(sectionName);
                     }
                 }
             });
@@ -1917,6 +1963,10 @@
            deploymentKey: "CV8c06a713005a34328affbd30d3fb6350"
         }
         
+        let conversationActive = false;
+        let messageCount = 0;
+        let conversationStartTime = null;
+        
         Twilio.initWebchat(appConfig).then((webchat) => {
           // Track when webchat is successfully initialized
           if (typeof analytics !== 'undefined') {
@@ -1926,43 +1976,65 @@
             });
           }
           
-          // Listen for when the chat is opened/started
-          webchat.on('conversationStarted', () => {
-            const user = JSON.parse(localStorage.getItem('groundfloorUser') || '{}');
-            
-            if (typeof analytics !== 'undefined') {
-              analytics.track('Live Chat Conversation Started', {
-                user_email: user.email || 'anonymous',
-                user_name: user.name || 'anonymous',
-                timestamp: new Date().toISOString()
-              });
+          webchat.on('messageAdded', (message) => {
+            // Only track user messages, not agent or system messages
+            if (message.author && message.author !== 'system') {
+              const user = JSON.parse(localStorage.getItem('groundfloorUser') || '{}');
+              
+              // Track conversation start on first user message
+              if (!conversationActive && typeof analytics !== 'undefined') {
+                conversationActive = true;
+                conversationStartTime = new Date().toISOString();
+                messageCount = 0;
+                
+                analytics.track('Live Chat Conversation Started', {
+                  user_email: user.email || 'anonymous',
+                  user_name: user.name || 'anonymous',
+                  timestamp: conversationStartTime
+                });
+              }
+              
+              // Track each message sent
+              messageCount++;
+              if (typeof analytics !== 'undefined') {
+                analytics.track('Live Chat Message Sent', {
+                  user_email: user.email || 'anonymous',
+                  user_name: user.name || 'anonymous',
+                  message_length: message.body ? message.body.length : 0,
+                  message_number: messageCount,
+                  timestamp: new Date().toISOString()
+                });
+              }
             }
           });
           
-          // Listen for when messages are sent
-          webchat.on('messageSent', (message) => {
-            const user = JSON.parse(localStorage.getItem('groundfloorUser') || '{}');
-            
-            if (typeof analytics !== 'undefined') {
-              analytics.track('Live Chat Message Sent', {
-                user_email: user.email || 'anonymous',
-                user_name: user.name || 'anonymous',
-                message_length: message.body ? message.body.length : 0,
-                timestamp: new Date().toISOString()
-              });
-            }
-          });
-          
-          // Listen for when the chat is closed/ended
-          webchat.on('conversationEnded', () => {
-            const user = JSON.parse(localStorage.getItem('groundfloorUser') || '{}');
-            
-            if (typeof analytics !== 'undefined') {
-              analytics.track('Live Chat Conversation Ended', {
-                user_email: user.email || 'anonymous',
-                user_name: user.name || 'anonymous',
-                timestamp: new Date().toISOString()
-              });
+          webchat.on('widgetCollapsed', () => {
+            if (conversationActive) {
+              const user = JSON.parse(localStorage.getItem('groundfloorUser') || '{}');
+              const conversationEndTime = new Date().toISOString();
+              
+              // Calculate conversation duration if start time exists
+              let duration = null;
+              if (conversationStartTime) {
+                const start = new Date(conversationStartTime);
+                const end = new Date(conversationEndTime);
+                duration = Math.round((end - start) / 1000); // duration in seconds
+              }
+              
+              if (typeof analytics !== 'undefined') {
+                analytics.track('Live Chat Conversation Ended', {
+                  user_email: user.email || 'anonymous',
+                  user_name: user.name || 'anonymous',
+                  total_messages: messageCount,
+                  conversation_duration_seconds: duration,
+                  timestamp: conversationEndTime
+                });
+              }
+              
+              // Reset conversation state
+              conversationActive = false;
+              messageCount = 0;
+              conversationStartTime = null;
             }
           });
           
