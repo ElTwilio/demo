@@ -1543,6 +1543,7 @@
 
     
     <script>
+
         function checkLoginState() {
             const user = JSON.parse(localStorage.getItem('groundfloorUser'));
             const navButtons = document.getElementById('navButtons');
@@ -1563,7 +1564,23 @@
         }
 
         function logout() {
+            const user = JSON.parse(localStorage.getItem('groundfloorUser'));
+            
+            // Track Signed Out event (B2B SaaS spec)
+            if (user && typeof analytics !== 'undefined') {
+                analytics.track('Signed Out', {
+                    email: user.email,
+                    name: user.name
+                });
+            }
+            
             localStorage.removeItem('groundfloorUser');
+            
+            // Reset Segment identity
+            if (typeof analytics !== 'undefined') {
+                analytics.reset();
+            }
+            
             checkLoginState();
             alert('You have been logged out successfully.');
             window.location.href = '#home';
@@ -1576,10 +1593,26 @@
             
             const user = {
                 name: name.charAt(0).toUpperCase() + name.slice(1),
-                email: email
+                email: email,
+                userId: email // Using email as userId for demo purposes
             };
             
             localStorage.setItem('groundfloorUser', JSON.stringify(user));
+            
+            // Identify user in Segment
+            if (typeof analytics !== 'undefined') {
+                analytics.identify(user.userId, {
+                    name: user.name,
+                    email: user.email
+                });
+                
+                // Track Signed In event (B2B SaaS spec)
+                analytics.track('Signed In', {
+                    email: user.email,
+                    name: user.name
+                });
+            }
+            
             checkLoginState();
             alert('Login successful! Welcome back, ' + user.name + '!');
             window.location.href = '#products';
@@ -1600,10 +1633,29 @@
             
             const user = {
                 name: name,
-                email: email
+                email: email,
+                userId: email, // Using email as userId for demo purposes
+                createdAt: new Date().toISOString()
             };
             
-            localStorage.setItem('groundfloorUser', JSON.JSON.parse(localStorage.getItem('groundfloorUser'))); // Fix: should be JSON.stringify
+            localStorage.setItem('groundfloorUser', JSON.stringify(user));
+            
+            // Identify user in Segment with traits
+            if (typeof analytics !== 'undefined') {
+                analytics.identify(user.userId, {
+                    name: user.name,
+                    email: user.email,
+                    createdAt: user.createdAt
+                });
+                
+                // Track Signed Up event (B2B SaaS spec)
+                analytics.track('Signed Up', {
+                    type: 'organic',
+                    email: user.email,
+                    name: user.name
+                });
+            }
+            
             checkLoginState();
             alert('Account created successfully! Welcome, ' + user.name + '!');
             window.location.href = '#products';
@@ -1621,7 +1673,9 @@
                     'Perfect for hands-off investors',
                     'Chosen by 76% of Groundfloor users'
                 ],
-                minInvestment: 100
+                minInvestment: 100,
+                category: 'Portfolio',
+                sku: 'GF-FLYWHEEL'
             },
             loans: {
                 title: 'Individual Loans (LROs)',
@@ -1634,7 +1688,9 @@
                     'Full investment control',
                     'Terms typically 6-24 months'
                 ],
-                minInvestment: 10
+                minInvestment: 10,
+                category: 'Individual Loans',
+                sku: 'GF-LRO'
             },
             notes: {
                 title: 'Groundfloor Notes',
@@ -1647,7 +1703,9 @@
                     'No market volatility exposure',
                     'Simple, straightforward investing'
                 ],
-                minInvestment: 1000
+                minInvestment: 1000,
+                category: 'Notes',
+                sku: 'GF-NOTES'
             },
             ira: {
                 title: 'IRA Accounts',
@@ -1660,7 +1718,9 @@
                     'Diversify retirement portfolio',
                     'Secure your financial future'
                 ],
-                minInvestment: 100
+                minInvestment: 100,
+                category: 'IRA',
+                sku: 'GF-IRA'
             }
         };
 
@@ -1675,6 +1735,18 @@
 
             const product = productData[productType];
             const modal = document.getElementById('productModal');
+            
+            // Track Product Viewed event (Ecommerce v2 spec)
+            if (typeof analytics !== 'undefined') {
+                analytics.track('Product Viewed', {
+                    product_id: product.sku,
+                    sku: product.sku,
+                    category: product.category,
+                    name: product.title,
+                    price: product.minInvestment,
+                    currency: 'USD'
+                });
+            }
             
             document.getElementById('modalTitle').textContent = product.title;
             document.getElementById('modalSubtitle').textContent = product.subtitle;
@@ -1694,6 +1766,24 @@
             document.getElementById('investment-amount').dataset.productType = productType;
             
             modal.classList.add('active');
+            
+            // Track Checkout Started event (Ecommerce v2 spec)
+            if (typeof analytics !== 'undefined') {
+                analytics.track('Checkout Started', {
+                    order_id: 'temp-' + Date.now(),
+                    value: product.minInvestment,
+                    revenue: product.minInvestment,
+                    currency: 'USD',
+                    products: [{
+                        product_id: product.sku,
+                        sku: product.sku,
+                        name: product.title,
+                        price: product.minInvestment,
+                        quantity: 1,
+                        category: product.category
+                    }]
+                });
+            }
         }
 
         function closeProductModal() {
@@ -1716,6 +1806,39 @@
             if (isNaN(amount) || amount <= 0) {
                 alert('Please enter a valid investment amount.');
                 return;
+            }
+            
+            const orderId = 'GF-' + Date.now();
+            
+            // Track Product Added event (Ecommerce v2 spec)
+            if (typeof analytics !== 'undefined') {
+                analytics.track('Product Added', {
+                    cart_id: orderId,
+                    product_id: product.sku,
+                    sku: product.sku,
+                    category: product.category,
+                    name: product.title,
+                    price: amount,
+                    quantity: 1,
+                    currency: 'USD'
+                });
+                
+                // Track Order Completed event (Ecommerce v2 spec)
+                analytics.track('Order Completed', {
+                    checkout_id: orderId,
+                    order_id: orderId,
+                    total: amount,
+                    revenue: amount,
+                    currency: 'USD',
+                    products: [{
+                        product_id: product.sku,
+                        sku: product.sku,
+                        name: product.title,
+                        price: amount,
+                        quantity: 1,
+                        category: product.category
+                    }]
+                });
             }
             
             alert(`Success! ${user.name}, you have invested $${amount.toFixed(2)} in ${product.title}.\n\nYour investment is being processed and will appear in your portfolio shortly.`);
@@ -1786,6 +1909,67 @@
             section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             observer.observe(section);
         });
+    </script>
+    <div id="twilio-webchat-widget-root"></div>
+    <script>
+      window.addEventListener("load", () => {
+        const appConfig = {
+           deploymentKey: "CV8c06a713005a34328affbd30d3fb6350"
+        }
+        
+        Twilio.initWebchat(appConfig).then((webchat) => {
+          // Track when webchat is successfully initialized
+          if (typeof analytics !== 'undefined') {
+            analytics.track('Live Chat Widget Loaded', {
+              deployment_key: appConfig.deploymentKey,
+              widget_version: '3.3.0'
+            });
+          }
+          
+          // Listen for when the chat is opened/started
+          webchat.on('conversationStarted', () => {
+            const user = JSON.parse(localStorage.getItem('groundfloorUser') || '{}');
+            
+            if (typeof analytics !== 'undefined') {
+              analytics.track('Live Chat Conversation Started', {
+                user_email: user.email || 'anonymous',
+                user_name: user.name || 'anonymous',
+                timestamp: new Date().toISOString()
+              });
+            }
+          });
+          
+          // Listen for when messages are sent
+          webchat.on('messageSent', (message) => {
+            const user = JSON.parse(localStorage.getItem('groundfloorUser') || '{}');
+            
+            if (typeof analytics !== 'undefined') {
+              analytics.track('Live Chat Message Sent', {
+                user_email: user.email || 'anonymous',
+                user_name: user.name || 'anonymous',
+                message_length: message.body ? message.body.length : 0,
+                timestamp: new Date().toISOString()
+              });
+            }
+          });
+          
+          // Listen for when the chat is closed/ended
+          webchat.on('conversationEnded', () => {
+            const user = JSON.parse(localStorage.getItem('groundfloorUser') || '{}');
+            
+            if (typeof analytics !== 'undefined') {
+              analytics.track('Live Chat Conversation Ended', {
+                user_email: user.email || 'anonymous',
+                user_name: user.name || 'anonymous',
+                timestamp: new Date().toISOString()
+              });
+            }
+          });
+          
+        }).catch((error) => {
+          console.error('Twilio Webchat initialization error:', error);
+        });
+       })
     </script>
 </body>
 </html>
