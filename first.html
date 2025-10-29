@@ -14,6 +14,7 @@
     </script>
     
     <script defer src="https://media.twiliocdn.com/sdk/js/webchat-v3/releases/3.3.0/webchat.min.js" integrity="sha256-ydLLXnNrb26iFUvKAHsYt9atwfzz0LNcgBmo0NmD5Uk=" crossorigin="anonymous"></script>
+    
     <style>
         * {
             margin: 0;
@@ -1027,3 +1028,1102 @@
             background: rgba(0, 255, 0, 0.05);
             border-left: 3px solid #00ff00;
             border-radius: 4px;
+        }
+        
+        .debug-event-type {
+            color: #ffff00; /* Yellow for event type */
+            font-weight: bold;
+            margin-bottom: 0.25rem;
+        }
+
+        .debug-event-name {
+            color: #00ffff; /* Cyan for event name */
+            margin-bottom: 0.25rem;
+        }
+
+        .debug-event-props {
+            color: #cccccc; /* Light gray for properties */
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+
+        .debug-event-separator {
+            color: #555555;
+            margin-top: 0.5rem;
+            font-size: 0.7rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Segment Debug Panel -->
+    <div class="segment-debug-panel" id="segmentDebugPanel">
+        <div class="debug-panel-header">
+            <div class="debug-panel-title">SEGMENT EVENTS</div>
+            <button class="debug-toggle-btn" id="debugToggleBtn">HIDE</button>
+        </div>
+        <div class="debug-panel-content" id="debugPanelContent">
+            <!-- Events will be added here dynamically -->
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="main-nav">
+        <div class="nav-container">
+            <a href="#home" class="logo">Groundfloor</a>
+            <ul class="nav-links">
+                <li><a href="#products" data-track-category="navigation" data-track-action="click_products">Products</a></li>
+                <li><a href="#how-it-works" data-track-category="navigation" data-track-action="click_how_it_works">How It Works</a></li>
+                <li><a href="#about" data-track-category="navigation" data-track-action="click_about">About</a></li>
+                <li><a href="#faq" data-track-category="navigation" data-track-action="click_faq">FAQ</a></li>
+                <li><a href="#contact" data-track-category="navigation" data-track-action="click_contact">Contact</a></li>
+            </ul>
+            <div class="nav-buttons" id="nav-buttons">
+                <a href="#login" class="btn btn-secondary" id="btn-login" data-track-category="authentication" data-track-action="click_login">Login</a>
+                <a href="#signup" class="btn btn-primary" id="btn-signup" data-track-category="authentication" data-track-action="click_signup">Sign Up</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-text-box">
+                <h1 class="text-white">Invest Next Door</h1>
+            </div>
+            <div class="hero-subtitle">
+                <p class="text-white">Real Estate Investing Reimagined.</p>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-number">250K+</div>
+                    <div class="stat-label">Registered Investors</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">$2.2B+</div>
+                    <div class="stat-label">Invested</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">$80M+</div>
+                    <div class="stat-label">Interest Earned</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">12</div>
+                    <div class="stat-label">Years in Business</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>Why Groundfloor?</h2>
+        <div class="hero-subtitle">
+            <p>Alternative investing shouldn't be reserved for the wealthy. With Groundfloor, anyone can invest in short-term real estate loans that deliver steady returns without buying property or managing tenants.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature">
+                <div class="feature-icon">🏠</div>
+                <h4>Real Estate Access</h4>
+                <p>Invest in real estate without the hassle of property ownership</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">💰</div>
+                <h4>Low Minimums</h4>
+                <p>Start investing with as little as $10</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">📈</div>
+                <h4>Attractive Returns</h4>
+                <p>Target returns of 10%+ annually</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">⚡</div>
+                <h4>Short-Term Loans</h4>
+                <p>Typical loan terms of 6-12 months</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products">
+        <h2>Investment Products</h2>
+        <p class="section-subtitle">Choose the investment strategy that fits your goals</p>
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-icon">🔄</div>
+                <h3>Flywheel</h3>
+                <p>Automated investing that diversifies your portfolio across multiple loans</p>
+                <ul>
+                    <li>Automatic diversification</li>
+                    <li>Set it and forget it</li>
+                    <li>Reinvest returns automatically</li>
+                    <li>Minimum investment: $10</li>
+                </ul>
+                <button class="btn btn-primary cta-invest" id="btn-explore-flywheel" data-product="flywheel" data-track-category="investment" data-track-action="explore_product">Explore Flywheel</button>
+            </div>
+            <div class="product-card">
+                <div class="product-icon">🏗️</div>
+                <h3>Individual Loans</h3>
+                <p>Hand-pick specific real estate projects to invest in</p>
+                <ul>
+                    <li>Choose your own loans</li>
+                    <li>Review project details</li>
+                    <li>Control your portfolio</li>
+                    <li>Minimum investment: $10</li>
+                </ul>
+                <button class="btn btn-primary cta-invest" id="btn-explore-loans" data-product="loans" data-track-category="investment" data-track-action="explore_product">Explore Loans</button>
+            </div>
+            <div class="product-card">
+                <div class="product-icon">📝</div>
+                <h3>LROs (Notes)</h3>
+                <p>Invest in loan repayment obligations for steady income</p>
+                <ul>
+                    <li>Fixed-income investments</li>
+                    <li>Predictable returns</li>
+                    <li>Lower risk profile</li>
+                    <li>Minimum investment: $10</li>
+                </ul>
+                <button class="btn btn-primary cta-invest" id="btn-explore-notes" data-product="notes" data-track-category="investment" data-track-action="explore_product">Explore Notes</button>
+            </div>
+            <div class="product-card">
+                <div class="product-icon">🏦</div>
+                <h3>IRA Accounts</h3>
+                <p>Invest for retirement with tax-advantaged accounts</p>
+                <ul>
+                    <li>Traditional & Roth IRAs</li>
+                    <li>Tax-advantaged growth</li>
+                    <li>Retirement planning</li>
+                    <li>Minimum investment: $1,000</li>
+                </ul>
+                <button class="btn btn-primary cta-invest" id="btn-learn-iras" data-product="iras" data-track-category="investment" data-track-action="explore_product">Learn About IRAs</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works">
+        <h2>How It Works</h2>
+        <p class="section-subtitle">Start investing in real estate in three simple steps</p>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Create Account</h3>
+                <p>Sign up in minutes and verify your identity</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Fund Account</h3>
+                <p>Add funds via bank transfer or other methods</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Start Investing</h3>
+                <p>Choose loans or use Flywheel for automatic investing</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials">
+        <h2>What Investors Say</h2>
+        <div class="testimonials">
+            <div class="testimonial">
+                <p>"Groundfloor has made real estate investing accessible to me. I love being able to diversify my portfolio with small investments."</p>
+                <div class="testimonial-author">- Sarah M., Investor since 2021</div>
+            </div>
+            <div class="testimonial">
+                <p>"The returns have been consistent and the platform is easy to use. I've recommended it to all my friends."</p>
+                <div class="testimonial-author">- James T., Investor since 2020</div>
+            </div>
+            <div class="testimonial">
+                <p>"Finally, a way to invest in real estate without needing hundreds of thousands of dollars. The Flywheel feature is brilliant!"</p>
+                <div class="testimonial-author">- Maria G., Investor since 2022</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-container">
+            <div class="faq-item" data-track-category="engagement" data-track-action="faq_click">
+                <div class="faq-question">
+                    <span>What is the minimum investment?</span>
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>You can start investing with as little as $10 for most products. IRA accounts require a minimum of $1,000.</p>
+                </div>
+            </div>
+            <div class="faq-item" data-track-category="engagement" data-track-action="faq_click">
+                <div class="faq-question">
+                    <span>How do I get my money back?</span>
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>When a loan is repaid, your principal plus interest is returned to your Groundfloor account. You can then withdraw it or reinvest in other loans.</p>
+                </div>
+            </div>
+            <div class="faq-item" data-track-category="engagement" data-track-action="faq_click">
+                <div class="faq-question">
+                    <span>What are the risks?</span>
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>All investments carry risk. Real estate loans can default, and you may lose some or all of your investment. We recommend diversifying across multiple loans to manage risk.</p>
+                </div>
+            </div>
+            <div class="faq-item" data-track-category="engagement" data-track-action="faq_click">
+                <div class="faq-question">
+                    <span>How long are the loan terms?</span>
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Most loans have terms of 6-12 months, though some may be shorter or longer depending on the project.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <h2>Get In Touch</h2>
+        <p class="section-subtitle">Have questions? We're here to help</p>
+        <div class="contact-grid">
+            <div class="contact-card">
+                <h4>Email</h4>
+                <p><a href="mailto:support@groundfloor.com">support@groundfloor.com</a></p>
+            </div>
+            <div class="contact-card">
+                <h4>Phone</h4>
+                <p><a href="tel:1-800-GROUND">1-800-GROUND</a></p>
+            </div>
+            <div class="contact-card">
+                <h4>Live Chat</h4>
+                <p>Available 9am-5pm EST</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Login Section -->
+    <section id="login" class="hidden">
+        <div class="auth-container">
+            <h2>Welcome Back</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" name="password" required>
+                </div>
+                <button type="submit" class="form-submit" id="btn-submit-login" data-track-category="authentication" data-track-action="submit_login">Login</button>
+            </form>
+            <div class="form-footer">
+                Don't have an account? <a href="#signup" id="link-to-signup">Sign up</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Signup Section -->
+    <section id="signup" class="hidden">
+        <div class="auth-container">
+            <h2>Create Your Account</h2>
+            <form id="signup-form">
+                <div class="form-group">
+                    <label for="signup-name">Full Name</label>
+                    <input type="text" id="signup-name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-email">Email</label>
+                    <input type="email" id="signup-email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-password">Password</label>
+                    <input type="password" id="signup-password" name="password" required>
+                </div>
+                <button type="submit" class="form-submit" id="btn-submit-signup" data-track-category="authentication" data-track-action="submit_signup">Sign Up</button>
+            </form>
+            <div class="form-footer">
+                Already have an account? <a href="#login" id="link-to-login">Login</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Modal -->
+    <div id="product-modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close-btn">&times;</button>
+            <div class="modal-header">
+                <h2 id="modal-product-title"></h2>
+                <p id="modal-product-subtitle"></p>
+            </div>
+            <div class="modal-body">
+                <h3>Key Features</h3>
+                <ul id="modal-product-features"></ul>
+                
+                <div class="investment-form">
+                    <h4>Invest Now</h4>
+                    <div class="amount-input-group">
+                        <label for="investment-amount">Investment Amount</label>
+                        <input type="number" id="investment-amount" min="10" step="10" placeholder="0">
+                    </div>
+                    <p class="min-investment-note" id="min-investment-note">Minimum investment: $10</p>
+                    <button class="invest-btn" id="invest-now-btn" data-track-category="investment" data-track-action="complete_purchase">Invest Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fund Account Modal -->
+    <div id="fund-account-modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" id="fund-modal-close-btn">&times;</button>
+            <div class="modal-header">
+                <h2>Fund Your Account</h2>
+                <p>Add funds to start investing</p>
+            </div>
+            <div class="modal-body">
+                <div class="investment-form">
+                    <div class="amount-input-group">
+                        <label for="fund-amount">Amount to Add</label>
+                        <input type="number" id="fund-amount" min="10" step="10" placeholder="0">
+                    </div>
+                    <p class="min-investment-note">Minimum deposit: $10</p>
+                    <button class="invest-btn" id="add-funds-btn">Add Funds</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Products</h4>
+                <ul>
+                    <li><a href="#products">Flywheel</a></li>
+                    <li><a href="#products">Individual Loans</a></li>
+                    <li><a href="#products">LROs</a></li>
+                    <li><a href="#products">IRA Accounts</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Help Center</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Disclosures</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Groundfloor. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Twilio Flex Webchat -->
+    <div id="twilio-webchat-widget-root"></div>
+
+    <script>
+        // Segment Debug Panel Functions
+        function addDebugEvent(eventType, eventName, properties) {
+            const debugContent = getElement('debugPanelContent');
+            if (!debugContent) return;
+
+            const eventDiv = document.createElement('div');
+            eventDiv.className = 'debug-event';
+            
+            const timestamp = new Date().toLocaleTimeString();
+            
+            eventDiv.innerHTML = `
+                <div class="debug-event-type">${eventType.toUpperCase()}</div>
+                <div class="debug-event-name">${eventName || 'N/A'}</div>
+                <div class="debug-event-props">${JSON.stringify(properties || {}, null, 2)}</div>
+                <div class="debug-event-separator">---</div>
+            `;
+            
+            debugContent.insertBefore(eventDiv, debugContent.firstChild);
+            
+            // Keep only last 20 events
+            while (debugContent.children.length > 20) {
+                debugContent.removeChild(debugContent.lastChild);
+            }
+        }
+
+        // Toggle debug panel
+        const debugToggleBtn = document.getElementById('debugToggleBtn');
+        const debugPanel = document.getElementById('segmentDebugPanel');
+        
+        if (debugToggleBtn && debugPanel) {
+            debugToggleBtn.addEventListener('click', function() {
+                debugPanel.classList.toggle('minimized');
+                this.textContent = debugPanel.classList.contains('minimized') ? 'SHOW' : 'HIDE';
+            });
+        }
+
+        // Wrap Segment analytics functions to capture events in debug panel
+        // Wait for analytics to be ready before wrapping
+        if (window.analytics && window.analytics.ready) {
+            analytics.ready(function() {
+                // Store original functions
+                const originalTrack = analytics.track;
+                const originalIdentify = analytics.identify;
+                const originalPage = analytics.page;
+
+                // Wrap track
+                analytics.track = function() {
+                    const eventName = arguments[0];
+                    const properties = arguments[1] || {};
+                    addDebugEvent('track', eventName, properties);
+                    return originalTrack.apply(this, arguments);
+                };
+
+                // Wrap identify
+                analytics.identify = function() {
+                    const userId = arguments[0];
+                    const traits = arguments[1] || {};
+                    addDebugEvent('identify', userId, traits);
+                    return originalIdentify.apply(this, arguments);
+                };
+
+                // Wrap page
+                analytics.page = function() {
+                    const pageName = arguments[0] || window.location.pathname;
+                    const properties = arguments[1] || {};
+                    addDebugEvent('page', pageName, properties);
+                    return originalPage.apply(this, arguments);
+                };
+            });
+        }
+
+        // Helper function to get elements (caching)
+        const elementCache = {};
+        function getElement(id) {
+            if (!elementCache[id]) {
+                elementCache[id] = document.getElementById(id);
+            }
+            return elementCache[id];
+        }
+
+        // Check if user is logged in
+        function checkAuth() {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+            const navButtons = getElement('nav-buttons');
+            
+            if (currentUser && navButtons) {
+                // User is logged in - show account info
+                const balance = parseFloat(localStorage.getItem('accountBalance') || '0');
+                navButtons.innerHTML = `
+                    <div class="account-balance">
+                        <div class="balance-display">$${balance.toFixed(2)}</div>
+                        <button class="fund-account-btn" id="fund-account-btn">Fund Account</button>
+                    </div>
+                    <div class="user-greeting">
+                        <span>Welcome, ${currentUser.name}</span>
+                        <button class="logout-btn" id="logout-btn">Logout</button>
+                    </div>
+                `;
+                
+                // Add event listeners for fund account and logout
+                const fundBtn = getElement('fund-account-btn');
+                const logoutBtn = getElement('logout-btn');
+                
+                if (fundBtn) {
+                    fundBtn.addEventListener('click', openFundAccountModal);
+                }
+                
+                if (logoutBtn) {
+                    logoutBtn.addEventListener('click', handleLogout);
+                }
+            } else {
+                // User is not logged in - show login/signup buttons
+                if (navButtons) {
+                    navButtons.innerHTML = `
+                        <a href="#login" class="btn btn-secondary" id="btn-login" data-track-category="authentication" data-track-action="click_login">Login</a>
+                        <a href="#signup" class="btn btn-primary" id="btn-signup" data-track-category="authentication" data-track-action="click_signup">Sign Up</a>
+                    `;
+                }
+            }
+        }
+
+        // Handle logout
+        function handleLogout() {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+            
+            if (currentUser && window.analytics) {
+                // Track sign out event
+                analytics.track('Signed Out', {
+                    email: currentUser.email,
+                    name: currentUser.name,
+                    timestamp: new Date().toISOString()
+                });
+                
+                // Reset Segment identity
+                analytics.reset();
+            }
+            
+            localStorage.removeItem('currentUser');
+            checkAuth();
+            window.location.hash = '#home';
+        }
+
+        // Handle login form submission
+        const loginForm = getElement('login-form');
+        if (loginForm) {
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const email = getElement('login-email').value;
+                const password = getElement('login-password').value;
+                
+                // In a real app, you'd validate against a backend
+                // For demo purposes, check if user exists in localStorage
+                const users = JSON.parse(localStorage.getItem('users') || '[]');
+                const user = users.find(u => u.email === email);
+                
+                if (user) {
+                    // Store current user
+                    localStorage.setItem('currentUser', JSON.stringify(user));
+                    
+                    // Segment identify call
+                    if (window.analytics) {
+                        analytics.identify(user.email, {
+                            name: user.name,
+                            email: user.email,
+                            createdAt: user.createdAt
+                        });
+                        
+                        // Track sign in event
+                        analytics.track('Signed In', {
+                            email: user.email,
+                            name: user.name,
+                            timestamp: new Date().toISOString()
+                        });
+                    }
+                    
+                    checkAuth();
+                    window.location.hash = '#home';
+                } else {
+                    alert('Invalid credentials. Please try again or sign up.');
+                }
+            });
+        }
+
+        // Handle signup form submission
+        const signupForm = getElement('signup-form');
+        if (signupForm) {
+            signupForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const name = getElement('signup-name').value;
+                const email = getElement('signup-email').value;
+                const password = getElement('signup-password').value;
+                
+                // Create new user
+                const newUser = {
+                    name: name,
+                    email: email,
+                    password: password,
+                    createdAt: new Date().toISOString()
+                };
+                
+                // Store user
+                const users = JSON.parse(localStorage.getItem('users') || '[]');
+                users.push(newUser);
+                localStorage.setItem('users', JSON.stringify(users));
+                localStorage.setItem('currentUser', JSON.stringify(newUser));
+                
+                // Initialize account balance
+                localStorage.setItem('accountBalance', '0');
+                
+                // Segment identify call
+                if (window.analytics) {
+                    analytics.identify(newUser.email, {
+                        name: newUser.name,
+                        email: newUser.email,
+                        createdAt: newUser.createdAt
+                    });
+                    
+                    // Track sign up event
+                    analytics.track('Signed Up', {
+                        type: 'email',
+                        email: newUser.email,
+                        name: newUser.name,
+                        timestamp: new Date().toISOString()
+                    });
+                }
+                
+                checkAuth();
+                window.location.hash = '#home';
+            });
+        }
+
+        // Product data
+        const productData = {
+            flywheel: {
+                title: 'Flywheel',
+                subtitle: 'Automated real estate investing',
+                features: [
+                    'Automatic diversification across multiple loans',
+                    'Set your investment criteria and let Flywheel do the work',
+                    'Automatic reinvestment of returns',
+                    'Target returns of 10%+ annually',
+                    'Minimum investment: $10'
+                ],
+                minInvestment: 10,
+                sku: 'PROD-FLYWHEEL-001',
+                category: 'Automated Investment'
+            },
+            loans: {
+                title: 'Individual Loans',
+                subtitle: 'Hand-pick your investments',
+                features: [
+                    'Choose specific real estate projects',
+                    'Review detailed project information',
+                    'Control your portfolio composition',
+                    'Invest in projects that match your criteria',
+                    'Minimum investment: $10'
+                ],
+                minInvestment: 10,
+                sku: 'PROD-LOANS-001',
+                category: 'Direct Investment'
+            },
+            notes: {
+                title: 'LROs (Notes)',
+                subtitle: 'Fixed-income real estate investments',
+                features: [
+                    'Loan Repayment Obligations for steady income',
+                    'Predictable returns',
+                    'Lower risk profile than direct loans',
+                    'Diversified exposure to real estate',
+                    'Minimum investment: $10'
+                ],
+                minInvestment: 10,
+                sku: 'PROD-NOTES-001',
+                category: 'Fixed Income'
+            },
+            iras: {
+                title: 'IRA Accounts',
+                subtitle: 'Tax-advantaged retirement investing',
+                features: [
+                    'Traditional and Roth IRA options',
+                    'Tax-advantaged growth',
+                    'Invest in real estate for retirement',
+                    'All Groundfloor products available',
+                    'Minimum investment: $1,000'
+                ],
+                minInvestment: 1000,
+                sku: 'PROD-IRA-001',
+                category: 'Retirement Account'
+            }
+        };
+
+        let currentProduct = null;
+
+        // Open product modal
+        function openProductModal(productKey) {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+            
+            if (!currentUser) {
+                alert('Please login or sign up to invest');
+                window.location.hash = '#login';
+                return;
+            }
+
+            const product = productData[productKey];
+            if (!product) return;
+
+            currentProduct = productKey;
+
+            // Track Product Viewed event
+            if (window.analytics) {
+                analytics.track('Product Viewed', {
+                    product_id: productKey,
+                    sku: product.sku,
+                    category: product.category,
+                    name: product.title,
+                    price: product.minInvestment,
+                    currency: 'USD'
+                });
+            }
+
+            const modal = getElement('product-modal');
+            const title = getElement('modal-product-title');
+            const subtitle = getElement('modal-product-subtitle');
+            const features = getElement('modal-product-features');
+            const minNote = getElement('min-investment-note');
+
+            if (title) title.textContent = product.title;
+            if (subtitle) subtitle.textContent = product.subtitle;
+            if (minNote) minNote.textContent = `Minimum investment: $${product.minInvestment}`;
+
+            if (features) {
+                features.innerHTML = product.features.map(f => `<li>${f}</li>`).join('');
+            }
+
+            if (modal) {
+                modal.classList.add('active');
+                
+                // Track Checkout Started event
+                if (window.analytics) {
+                    analytics.track('Checkout Started', {
+                        order_id: `ORDER-${Date.now()}`,
+                        value: product.minInvestment,
+                        revenue: product.minInvestment,
+                        currency: 'USD',
+                        products: [{
+                            product_id: productKey,
+                            sku: product.sku,
+                            name: product.title,
+                            price: product.minInvestment,
+                            quantity: 1,
+                            category: product.category
+                        }]
+                    });
+                }
+            }
+        }
+
+        // Close product modal
+        function closeProductModal() {
+            const modal = getElement('product-modal');
+            if (modal) {
+                modal.classList.remove('active');
+            }
+            currentProduct = null;
+        }
+
+        // Handle investment
+        const investBtn = getElement('invest-now-btn');
+        if (investBtn) {
+            investBtn.addEventListener('click', function() {
+                if (!currentProduct) return;
+
+                const amount = parseFloat(getElement('investment-amount').value);
+                const product = productData[currentProduct];
+                const currentBalance = parseFloat(localStorage.getItem('accountBalance') || '0');
+
+                if (!amount || amount < product.minInvestment) {
+                    alert(`Minimum investment is $${product.minInvestment}`);
+                    return;
+                }
+
+                if (amount > currentBalance) {
+                    alert(`Insufficient funds. Your balance is $${currentBalance.toFixed(2)}. Please fund your account first.`);
+                    return;
+                }
+
+                // Deduct from balance
+                const newBalance = currentBalance - amount;
+                localStorage.setItem('accountBalance', newBalance.toString());
+
+                const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+                const orderId = `ORDER-${Date.now()}`;
+                const cartId = `CART-${Date.now()}`;
+
+                // Track Product Added event
+                if (window.analytics) {
+                    analytics.track('Product Added', {
+                        cart_id: cartId,
+                        product_id: currentProduct,
+                        sku: product.sku,
+                        category: product.category,
+                        name: product.title,
+                        price: amount,
+                        quantity: 1,
+                        currency: 'USD'
+                    });
+
+                    // Track Order Completed event
+                    analytics.track('Order Completed', {
+                        checkout_id: `CHECKOUT-${Date.now()}`,
+                        order_id: orderId,
+                        total: amount,
+                        revenue: amount,
+                        currency: 'USD',
+                        products: [{
+                            product_id: currentProduct,
+                            sku: product.sku,
+                            name: product.title,
+                            price: amount,
+                            quantity: 1,
+                            category: product.category
+                        }],
+                        user_email: currentUser ? currentUser.email : 'anonymous',
+                        user_name: currentUser ? currentUser.name : 'anonymous',
+                        balance_before: currentBalance,
+                        balance_after: newBalance
+                    });
+                }
+
+                alert(`Successfully invested $${amount} in ${product.title}!\nNew balance: $${newBalance.toFixed(2)}`);
+                closeProductModal();
+                checkAuth(); // Update balance display
+            });
+        }
+
+        // Fund Account Modal
+        function openFundAccountModal() {
+            const modal = getElement('fund-account-modal');
+            if (modal) {
+                modal.classList.add('active');
+            }
+        }
+
+        function closeFundAccountModal() {
+            const modal = getElement('fund-account-modal');
+            if (modal) {
+                modal.classList.remove('active');
+            }
+        }
+
+        // Handle adding funds
+        const addFundsBtn = getElement('add-funds-btn');
+        if (addFundsBtn) {
+            addFundsBtn.addEventListener('click', function() {
+                const amount = parseFloat(getElement('fund-amount').value);
+
+                if (!amount || amount < 10) {
+                    alert('Minimum deposit is $10');
+                    return;
+                }
+
+                const currentBalance = parseFloat(localStorage.getItem('accountBalance') || '0');
+                const newBalance = currentBalance + amount;
+                localStorage.setItem('accountBalance', newBalance.toString());
+
+                const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+
+                // Track Account Funded event
+                if (window.analytics) {
+                    analytics.track('Account Funded', {
+                        amount: amount,
+                        currency: 'USD',
+                        balance_before: currentBalance,
+                        balance_after: newBalance,
+                        user_email: currentUser ? currentUser.email : 'anonymous',
+                        user_name: currentUser ? currentUser.name : 'anonymous',
+                        timestamp: new Date().toISOString()
+                    });
+                }
+
+                alert(`Successfully added $${amount} to your account!\nNew balance: $${newBalance.toFixed(2)}`);
+                closeFundAccountModal();
+                checkAuth(); // Update balance display
+            });
+        }
+
+        // Modal close buttons
+        const modalCloseBtn = getElement('modal-close-btn');
+        const fundModalCloseBtn = getElement('fund-modal-close-btn');
+
+        if (modalCloseBtn) {
+            modalCloseBtn.addEventListener('click', closeProductModal);
+        }
+
+        if (fundModalCloseBtn) {
+            fundModalCloseBtn.addEventListener('click', closeFundAccountModal);
+        }
+
+        // Close modals when clicking outside
+        window.addEventListener('click', function(e) {
+            const productModal = getElement('product-modal');
+            const fundModal = getElement('fund-account-modal');
+            
+            if (e.target === productModal) {
+                closeProductModal();
+            }
+            if (e.target === fundModal) {
+                closeFundAccountModal();
+            }
+        });
+
+        // Add event listeners to product buttons
+        document.querySelectorAll('[data-product]').forEach(button => {
+            button.addEventListener('click', function() {
+                const productKey = this.getAttribute('data-product');
+                openProductModal(productKey);
+            });
+        });
+
+        // FAQ toggle
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.addEventListener('click', function() {
+                this.classList.toggle('active');
+            });
+        });
+
+        // Smooth scroll and page tracking for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    // Track page view for section navigation
+                    if (window.analytics && targetId !== 'home') {
+                        analytics.page(targetId, {
+                            path: `/#${targetId}`,
+                            title: document.title,
+                            url: window.location.href
+                        });
+                    }
+
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                    
+                    // Show/hide sections based on hash
+                    if (targetId === 'login' || targetId === 'signup') {
+                        document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
+                        targetElement.classList.remove('hidden');
+                    } else {
+                        document.querySelectorAll('section').forEach(s => {
+                            if (s.id === 'login' || s.id === 'signup') {
+                                s.classList.add('hidden');
+                            } else {
+                                s.classList.remove('hidden');
+                            }
+                        });
+                    }
+                }
+            });
+        });
+
+        // Initialize on page load
+        checkAuth();
+
+        // Handle hash changes
+        window.addEventListener('hashchange', function() {
+            const hash = window.location.hash.substring(1);
+            if (hash === 'login' || hash === 'signup') {
+                document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
+                const targetSection = getElement(hash);
+                if (targetSection) {
+                    targetSection.classList.remove('hidden');
+                }
+            } else {
+                document.querySelectorAll('section').forEach(s => {
+                    if (s.id === 'login' || s.id === 'signup') {
+                        s.classList.add('hidden');
+                    } else {
+                        s.classList.remove('hidden');
+                    }
+                });
+            }
+        });
+
+        // Twilio Flex Webchat initialization
+        window.addEventListener("load", () => {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+            
+            const appConfig = {
+                deploymentKey: "CV8c06a713005a34328affbd30d3fb6350",
+                context: currentUser ? {
+                    friendlyName: currentUser.name,
+                    email: currentUser.email
+                } : {}
+            };
+
+            if (window.Twilio && window.Twilio.initWebchat) {
+                Twilio.initWebchat(appConfig).then((webchat) => {
+                    // Track webchat loaded
+                    if (window.analytics) {
+                        analytics.track('Live Chat Widget Loaded', {
+                            deployment_key: appConfig.deploymentKey,
+                            widget_version: '3.3.0',
+                            user_logged_in: !!currentUser
+                        });
+                    }
+
+                    // Track conversation state
+                    let conversationActive = false;
+                    let messageCount = 0;
+                    let conversationStartTime = null;
+
+                    // Track when widget is expanded (user opens chat)
+                    if (webchat.on) {
+                        webchat.on('widgetExpanded', () => {
+                            // Don't track conversation start here, wait for first message
+                        });
+
+                        // Track when user sends a message
+                        webchat.on('messageAdded', (message) => {
+                            messageCount++;
+
+                            // Track conversation start only on first message
+                            if (!conversationActive) {
+                                conversationActive = true;
+                                conversationStartTime = new Date();
+                                
+                                if (window.analytics) {
+                                    analytics.track('Live Chat Conversation Started', {
+                                        user_email: currentUser ? currentUser.email : 'anonymous',
+                                        user_name: currentUser ? currentUser.name : 'anonymous',
+                                        timestamp: conversationStartTime.toISOString()
+                                    });
+                                }
+                            }
+
+                            // Track each message sent
+                            if (window.analytics) {
+                                analytics.track('Live Chat Message Sent', {
+                                    user_email: currentUser ? currentUser.email : 'anonymous',
+                                    user_name: currentUser ? currentUser.name : 'anonymous',
+                                    message_number: messageCount,
+                                    timestamp: new Date().toISOString()
+                                });
+                            }
+                        });
+
+                        // Track when widget is collapsed (user closes chat)
+                        webchat.on('widgetCollapsed', () => {
+                            // Only track conversation end if a conversation was active
+                            if (conversationActive) {
+                                const conversationEndTime = new Date();
+                                const durationSeconds = conversationStartTime 
+                                    ? Math.floor((conversationEndTime - conversationStartTime) / 1000)
+                                    : 0;
+
+                                if (window.analytics) {
+                                    analytics.track('Live Chat Conversation Ended', {
+                                        user_email: currentUser ? currentUser.email : 'anonymous',
+                                        user_name: currentUser ? currentUser.name : 'anonymous',
+                                        message_count: messageCount,
+                                        duration_seconds: durationSeconds,
+                                        timestamp: conversationEndTime.toISOString()
+                                    });
+                                }
+
+                                // Reset conversation state
+                                conversationActive = false;
+                                messageCount = 0;
+                                conversationStartTime = null;
+                            }
+                        });
+                    }
+                }).catch((error) => {
+                    console.error('Error initializing Twilio Webchat:', error);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
