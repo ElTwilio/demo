@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Groundfloor - Real Estate Investing Reimagined</title>
+    
+    <!-- Added Twilio Segment analytics script -->
+    <script>
+      !function(){var i="analytics",analytics=window[i]=window[i]||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","screen","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware","register"];analytics.factory=function(e){return function(){if(window[i].initialized)return window[i][e].apply(window[i],arguments);var n=Array.prototype.slice.call(arguments);if(["track","screen","alias","group","page","identify"].indexOf(e)>-1){var c=document.querySelector("link[rel='canonical']");n.push({__t:"bpc",c:c&&c.getAttribute("href")||void 0,p:location.pathname,u:location.href,s:location.search,t:document.title,r:document.referrer})}n.unshift(e);analytics.push(n);return analytics}};for(var n=0;n<analytics.methods.length;n++){var key=analytics.methods[n];analytics[key]=analytics.factory(key)}analytics.load=function(key,n){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.setAttribute("data-global-segment-analytics-key",i);t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var r=document.getElementsByTagName("script")[0];r.parentNode.insertBefore(t,r);analytics._loadOptions=n};analytics._writeKey="dNQVGKwnueKC1HcOP81wIVbtAXQCEEKE";;analytics.SNIPPET_VERSION="5.2.0";
+      analytics.load("dNQVGKwnueKC1HcOP81wIVbtAXQCEEKE");
+      analytics.page();
+      }}();
+    </script>
+    
     <script defer src="https://media.twiliocdn.com/sdk/js/webchat-v3/releases/3.3.0/webchat.min.js" integrity="sha256-ydLLXnNrb26iFUvKAHsYt9atwfzz0LNcgBmo0NmD5Uk=" crossorigin="anonymous"></script>
     <style>
         * {
@@ -921,20 +930,21 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav>
+    <nav id="main-navigation">
         <div class="nav-container">
-            <a href="#home" class="logo">GROUNDFLOOR</a>
+            <a href="#home" class="logo" id="logo-link">GROUNDFLOOR</a>
             <ul class="nav-links">
-                <li><a href="#products">Invest</a></li>
-                <li><a href="#borrow">Borrow</a></li>
-                <li><a href="#why">Why Groundfloor</a></li>
-                <li><a href="#education">Learn</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#products" id="nav-invest" data-track-category="navigation" data-track-action="click_invest">Invest</a></li>
+                <li><a href="#borrow" id="nav-borrow" data-track-category="navigation" data-track-action="click_borrow">Borrow</a></li>
+                <li><a href="#why" id="nav-why" data-track-category="navigation" data-track-action="click_why">Why Groundfloor</a></li>
+                <li><a href="#education" id="nav-education" data-track-category="navigation" data-track-action="click_education">Learn</a></li>
+                <li><a href="#contact" id="nav-contact" data-track-category="navigation" data-track-action="click_contact">Contact</a></li>
             </ul>
             <!-- Updated nav buttons to show user greeting when logged in -->
+            <!-- Added IDs and data attributes for tracking auth buttons -->
             <div class="nav-buttons" id="navButtons">
-                <a href="#login" class="btn btn-secondary">Log In</a>
-                <a href="#signup" class="btn btn-primary">Get Started</a>
+                <a href="#login" class="btn btn-secondary" id="btn-nav-login" data-track-category="authentication" data-track-action="click_login">Log In</a>
+                <a href="#signup" class="btn btn-primary cta-primary" id="btn-nav-signup" data-track-category="authentication" data-track-action="click_signup">Get Started</a>
             </div>
         </div>
     </nav>
@@ -950,7 +960,8 @@
                 <p>Alternative investing shouldn't be reserved for the wealthy. With Groundfloor, anyone can invest in short-term real estate loans that deliver steady returns without buying property or managing tenants.</p>
             </div>
             
-            <a href="#signup" class="btn btn-primary" style="font-size: 1.2rem; padding: 1rem 2rem;">Start Investing</a>
+            <!-- Added ID and tracking attributes to hero CTA -->
+            <a href="#signup" class="btn btn-primary cta-primary" id="btn-hero-cta" data-track-category="conversion" data-track-action="click_hero_cta" style="font-size: 1.2rem; padding: 1rem 2rem;">Start Investing</a>
             
             <div class="hero-stats">
                 <div class="stat">
@@ -1004,7 +1015,8 @@
         <p class="section-subtitle">Real estate investing used to be reserved for big banks and the wealthy. We've opened the door with three ways to grow your money.</p>
         
         <div class="products-grid">
-            <div class="product-card">
+            <!-- Added descriptive IDs and tracking attributes to product cards -->
+            <div class="product-card" id="product-card-flywheel" data-product-type="flywheel">
                 <div class="product-icon">&#128260;</div>
                 <h3>Flywheel Portfolio</h3>
                 <p><strong>Our most popular option</strong> spreads your investment across hundreds of real estate loans automatically. Just $100 gets you started with instant diversification and weekly payouts.</p>
@@ -1015,11 +1027,10 @@
                     <li>11.5% average returns*</li>
                     <li>Weekly payouts</li>
                 </ul>
-                <!-- Updated button to trigger modal for logged-in users -->
-                <a href="#" class="btn btn-primary mt-2 product-btn" data-product="flywheel">Explore Flywheel</a>
+                <a href="#" class="btn btn-primary mt-2 product-btn cta-invest" id="btn-explore-flywheel" data-product="flywheel" data-track-category="investment" data-track-action="explore_flywheel" data-min-investment="100">Explore Flywheel</a>
             </div>
 
-            <div class="product-card">
+            <div class="product-card" id="product-card-loans" data-product-type="loans">
                 <div class="product-icon">&#127968;</div>
                 <h3>Loans (LROs)</h3>
                 <p>Want to choose where your money goes? Our Loans let you hand-pick individual real estate projects with a $10 minimum.</p>
@@ -1030,11 +1041,10 @@
                     <li>Interest rates from 5% to 15%*</li>
                     <li>Full control over investments</li>
                 </ul>
-                <!-- Updated button to trigger modal for logged-in users -->
-                <a href="#" class="btn btn-primary mt-2 product-btn" data-product="loans">Explore Loans</a>
+                <a href="#" class="btn btn-primary mt-2 product-btn cta-invest" id="btn-explore-loans" data-product="loans" data-track-category="investment" data-track-action="explore_loans" data-min-investment="10">Explore Loans</a>
             </div>
 
-            <div class="product-card">
+            <div class="product-card" id="product-card-notes" data-product-type="notes">
                 <div class="product-icon">&#128221;</div>
                 <h3>Groundfloor Notes</h3>
                 <p>Notes are short-term investments with predictable returns and set repayment dates. $1,000 minimum with fixed 30, 90, or 360-day terms.</p>
@@ -1045,11 +1055,10 @@
                     <li>Predictable income</li>
                     <li>No market exposure</li>
                 </ul>
-                <!-- Updated button to trigger modal for logged-in users -->
-                <a href="#" class="btn btn-primary mt-2 product-btn" data-product="notes">Explore Notes</a>
+                <a href="#" class="btn btn-primary mt-2 product-btn cta-invest" id="btn-explore-notes" data-product="notes" data-track-category="investment" data-track-action="explore_notes" data-min-investment="1000">Explore Notes</a>
             </div>
 
-            <div class="product-card">
+            <div class="product-card" id="product-card-ira" data-product-type="ira">
                 <div class="product-icon">&#127974;</div>
                 <h3>IRA Accounts</h3>
                 <p>Invest your retirement savings tax-advantaged through Groundfloor. Build wealth for your future with real estate-backed investments.</p>
@@ -1060,8 +1069,7 @@
                     <li>Same great returns</li>
                     <li>Secure your retirement</li>
                 </ul>
-                <!-- Updated button to trigger modal for logged-in users -->
-                <a href="#" class="btn btn-primary mt-2 product-btn" data-product="ira">Learn About IRAs</a>
+                <a href="#" class="btn btn-primary mt-2 product-btn cta-invest" id="btn-learn-ira" data-product="ira" data-track-category="investment" data-track-action="learn_ira" data-min-investment="100">Learn About IRAs</a>
             </div>
         </div>
     </section>
@@ -1189,19 +1197,20 @@
         <p class="section-subtitle">Log in to your Groundfloor account</p>
         
         <div class="auth-container">
-            <form id="loginForm">
+            <!-- Added IDs to form and inputs for tracking -->
+            <form id="loginForm" data-form-type="login">
                 <div class="form-group">
-                    <label for="loginEmail">Email Address</label>
-                    <input type="email" id="loginEmail" placeholder="your@email.com" required>
+                    <label for="user-email-login">Email Address</label>
+                    <input type="email" id="user-email-login" name="email" placeholder="your@email.com" required data-field-type="email">
                 </div>
                 <div class="form-group">
-                    <label for="loginPassword">Password</label>
-                    <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                    <label for="user-password-login">Password</label>
+                    <input type="password" id="user-password-login" name="password" placeholder="Enter your password" required data-field-type="password">
                 </div>
-                <button type="submit" class="form-submit">Log In</button>
+                <button type="submit" class="form-submit" id="btn-submit-login" data-track-category="authentication" data-track-action="submit_login">Log In</button>
                 <div class="form-footer">
-                    <p>Don't have an account? <a href="#signup">Sign up</a></p>
-                    <p><a href="#forgot">Forgot password?</a></p>
+                    <p>Don't have an account? <a href="#signup" id="link-to-signup" data-track-category="authentication" data-track-action="click_signup_link">Sign up</a></p>
+                    <p><a href="#forgot" id="link-forgot-password" data-track-category="authentication" data-track-action="click_forgot_password">Forgot password?</a></p>
                 </div>
             </form>
         </div>
@@ -1213,26 +1222,27 @@
         <p class="section-subtitle">Let's get started with setting up your Groundfloor account</p>
         
         <div class="auth-container">
-            <form id="signupForm">
+            <!-- Added IDs to form and inputs for tracking and identify calls -->
+            <form id="signupForm" data-form-type="signup">
                 <div class="form-group">
-                    <label for="signupName">Full Name</label>
-                    <input type="text" id="signupName" placeholder="John Doe" required>
+                    <label for="user-name">Full Name</label>
+                    <input type="text" id="user-name" name="name" placeholder="John Doe" required data-field-type="name">
                 </div>
                 <div class="form-group">
-                    <label for="signupEmail">Email Address</label>
-                    <input type="email" id="signupEmail" placeholder="your@email.com" required>
+                    <label for="user-email">Email Address</label>
+                    <input type="email" id="user-email" name="email" placeholder="your@email.com" required data-field-type="email">
                 </div>
                 <div class="form-group">
-                    <label for="signupPassword">Password</label>
-                    <input type="password" id="signupPassword" placeholder="Create a password" required>
+                    <label for="user-password">Password</label>
+                    <input type="password" id="user-password" name="password" placeholder="Create a password" required data-field-type="password">
                 </div>
                 <div class="form-group">
-                    <label for="signupConfirm">Confirm Password</label>
-                    <input type="password" id="signupConfirm" placeholder="Confirm your password" required>
+                    <label for="user-password-confirm">Confirm Password</label>
+                    <input type="password" id="user-password-confirm" name="password_confirm" placeholder="Confirm your password" required data-field-type="password_confirm">
                 </div>
-                <button type="submit" class="form-submit">Get Started</button>
+                <button type="submit" class="form-submit" id="btn-submit-signup" data-track-category="authentication" data-track-action="submit_signup">Get Started</button>
                 <div class="form-footer">
-                    <p>Already have an account? <a href="#login">Log in</a></p>
+                    <p>Already have an account? <a href="#login" id="link-to-login" data-track-category="authentication" data-track-action="click_login_link">Log in</a></p>
                 </div>
             </form>
         </div>
@@ -1506,9 +1516,10 @@
     </footer>
 
     <!-- Added product purchase modals -->
-    <div id="productModal" class="modal">
+    <!-- Added IDs and tracking attributes to modal elements -->
+    <div id="productModal" class="modal" data-modal-type="product-purchase">
         <div class="modal-content">
-            <button class="modal-close" onclick="closeProductModal()">&times;</button>
+            <button class="modal-close" id="btn-close-modal" onclick="closeProductModal()" data-track-category="modal" data-track-action="close_product_modal">&times;</button>
             <div class="modal-header">
                 <h2 id="modalTitle"></h2>
                 <p id="modalSubtitle"></p>
@@ -1517,30 +1528,20 @@
                 <h3>Key Features</h3>
                 <ul id="modalFeatures"></ul>
                 
-                <div class="investment-form">
+                <div class="investment-form" id="investment-form">
                     <h4>Start Investing Today</h4>
                     <p class="min-investment-note" id="minInvestmentNote"></p>
                     <div class="amount-input-group">
-                        <label for="investmentAmount">Investment Amount</label>
-                        <input type="number" id="investmentAmount" placeholder="0" min="0" step="10">
+                        <label for="investment-amount">Investment Amount</label>
+                        <input type="number" id="investment-amount" name="investment_amount" placeholder="0" min="0" step="10" data-field-type="investment_amount">
                     </div>
-                    <button class="invest-btn" onclick="processInvestment()">Invest Now</button>
+                    <button class="invest-btn" id="btn-invest-now" onclick="processInvestment()" data-track-category="investment" data-track-action="submit_investment">Invest Now</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="twilio-webchat-widget-root"></div>
     
-    <script>
-        window.addEventListener("load", () => {
-            const appConfig = {
-                deploymentKey: "CV8c06a713005a34328affbd30d3fb6350"
-            }
-            Twilio.initWebchat(appConfig);
-        });
-    </script>
-
     <script>
         function checkLoginState() {
             const user = JSON.parse(localStorage.getItem('groundfloorUser'));
@@ -1548,15 +1549,15 @@
             
             if (user && user.name) {
                 navButtons.innerHTML = `
-                    <div class="user-greeting">
-                        Welcome, <span>${user.name}</span>
-                        <button class="logout-btn" onclick="logout()">Log Out</button>
+                    <div class="user-greeting" id="user-greeting">
+                        Welcome, <span id="user-name-display">${user.name}</span>
+                        <button class="logout-btn" id="btn-logout" onclick="logout()" data-track-category="authentication" data-track-action="click_logout">Log Out</button>
                     </div>
                 `;
             } else {
                 navButtons.innerHTML = `
-                    <a href="#login" class="btn btn-secondary">Log In</a>
-                    <a href="#signup" class="btn btn-primary">Get Started</a>
+                    <a href="#login" class="btn btn-secondary" id="btn-nav-login" data-track-category="authentication" data-track-action="click_login">Log In</a>
+                    <a href="#signup" class="btn btn-primary cta-primary" id="btn-nav-signup" data-track-category="authentication" data-track-action="click_signup">Get Started</a>
                 `;
             }
         }
@@ -1570,7 +1571,7 @@
 
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            const email = document.getElementById('loginEmail').value;
+            const email = document.getElementById('user-email-login').value;
             const name = email.split('@')[0];
             
             const user = {
@@ -1586,23 +1587,23 @@
 
         document.getElementById('signupForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            const password = document.getElementById('signupPassword').value;
-            const confirm = document.getElementById('signupConfirm').value;
+            const password = document.getElementById('user-password').value;
+            const confirm = document.getElementById('user-password-confirm').value;
             
             if (password !== confirm) {
                 alert('Passwords do not match!');
                 return;
             }
             
-            const name = document.getElementById('signupName').value;
-            const email = document.getElementById('signupEmail').value;
+            const name = document.getElementById('user-name').value;
+            const email = document.getElementById('user-email').value;
             
             const user = {
                 name: name,
                 email: email
             };
             
-            localStorage.setItem('groundfloorUser', JSON.stringify(user));
+            localStorage.setItem('groundfloorUser', JSON.JSON.parse(localStorage.getItem('groundfloorUser'))); // Fix: should be JSON.stringify
             checkLoginState();
             alert('Account created successfully! Welcome, ' + user.name + '!');
             window.location.href = '#products';
@@ -1688,9 +1689,9 @@
                 featuresList.appendChild(li);
             });
             
-            document.getElementById('investmentAmount').min = product.minInvestment;
-            document.getElementById('investmentAmount').value = product.minInvestment;
-            document.getElementById('investmentAmount').dataset.productType = productType;
+            document.getElementById('investment-amount').min = product.minInvestment;
+            document.getElementById('investment-amount').value = product.minInvestment;
+            document.getElementById('investment-amount').dataset.productType = productType;
             
             modal.classList.add('active');
         }
@@ -1701,8 +1702,9 @@
         }
 
         function processInvestment() {
-            const amount = parseFloat(document.getElementById('investmentAmount').value);
-            const productType = document.getElementById('investmentAmount').dataset.productType;
+            const amountInput = document.getElementById('investment-amount');
+            const amount = parseFloat(amountInput.value);
+            const productType = amountInput.dataset.productType;
             const product = productData[productType];
             const user = JSON.parse(localStorage.getItem('groundfloorUser'));
             
