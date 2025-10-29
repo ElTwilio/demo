@@ -163,7 +163,8 @@
         }
 
         .hero-text-box {
-            background: rgba(0, 0, 0, 0.75);
+            /* Changed from black rgba(0,0,0,0.75) to light teal with opacity for better aesthetics */
+            background: rgba(182, 227, 212, 0.85);
             backdrop-filter: blur(15px);
             padding: 2rem 3rem;
             border-radius: 15px;
@@ -1559,6 +1560,7 @@
         }
 
         function checkLoginState() {
+            // Use the correct key for storing user data
             const user = JSON.parse(localStorage.getItem('groundfloorUser'));
             const navButtons = getElement('navButtons');
             
@@ -1959,8 +1961,17 @@
     <div id="twilio-webchat-widget-root"></div>
     <script>
       window.addEventListener("load", () => {
+        const currentUser = JSON.parse(localStorage.getItem('groundfloorUser') || 'null');
+        
         const appConfig = {
            deploymentKey: "CV8c06a713005a34328affbd30d3fb6350"
+        }
+        
+        if (currentUser) {
+          appConfig.context = {
+            friendlyName: currentUser.name,
+            email: currentUser.email
+          };
         }
         
         let conversationActive = false;
