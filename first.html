@@ -82,6 +82,39 @@
             color: var(--primary-color);
         }
 
+        /* Added styles for account balance display in nav */
+        .account-balance {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-right: 1rem;
+        }
+
+        .balance-display {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            color: var(--white);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .fund-account-btn {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .fund-account-btn:hover {
+            background: #e67e22;
+            transform: translateY(-2px);
+        }
+
         .nav-buttons {
             display: flex;
             gap: 1rem;
@@ -162,9 +195,9 @@
             padding-bottom: 3rem;
         }
 
+        /* Changed hero text boxes and stats to darker teal for better contrast */
         .hero-text-box {
-            /* Changed from black rgba(0,0,0,0.75) to light teal with opacity for better aesthetics */
-            background: rgba(182, 227, 212, 0.85);
+            background: rgba(45, 135, 120, 0.9);
             backdrop-filter: blur(15px);
             padding: 2rem 3rem;
             border-radius: 15px;
@@ -183,7 +216,8 @@
         }
 
         .hero-subtitle {
-            background: rgba(0, 0, 0, 0.75);
+            /* Changed to darker teal for better text contrast */
+            background: rgba(45, 135, 120, 0.9);
             backdrop-filter: blur(15px);
             padding: 1.5rem 2.5rem;
             border-radius: 12px;
@@ -209,7 +243,8 @@
 
         .stat {
             text-align: center;
-            background: rgba(0, 0, 0, 0.8);
+            /* Changed to darker teal for consistency */
+            background: rgba(45, 135, 120, 0.9);
             padding: 1.5rem 2rem;
             border-radius: 12px;
             backdrop-filter: blur(15px);
@@ -932,6 +967,91 @@
                 font-size: 0.9rem;
             }
         }
+
+        /* Added Segment Debug Panel styles */
+        .segment-debug-panel {
+            position: fixed;
+            left: 0;
+            top: 100px;
+            width: 350px;
+            max-height: 80vh;
+            background: rgba(0, 0, 0, 0.95);
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            z-index: 9999;
+            border-radius: 0 10px 10px 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+            overflow: hidden;
+        }
+
+        .segment-debug-panel.minimized {
+            transform: translateX(-310px);
+        }
+
+        .debug-panel-header {
+            background: #1a1a1a;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #00ff00;
+        }
+
+        .debug-panel-title {
+            font-weight: bold;
+            color: #00ff00;
+        }
+
+        .debug-toggle-btn {
+            background: #00ff00;
+            color: #000;
+            border: none;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        .debug-panel-content {
+            padding: 1rem;
+            max-height: calc(80vh - 60px);
+            overflow-y: auto;
+        }
+
+        .debug-event {
+            margin-bottom: 1rem;
+            padding: 0.75rem;
+            background: rgba(0, 255, 0, 0.05);
+            border-left: 3px solid #00ff00;
+            border-radius: 4px;
+        }
+
+        .debug-event-type {
+            font-weight: bold;
+            color: #00ff00;
+            margin-bottom: 0.3rem;
+        }
+
+        .debug-event-name {
+            color: #ffff00;
+            margin-bottom: 0.3rem;
+        }
+
+        .debug-event-props {
+            color: #888;
+            font-size: 0.8rem;
+            margin-top: 0.3rem;
+        }
+
+        .debug-event-time {
+            color: #666;
+            font-size: 0.75rem;
+            margin-top: 0.3rem;
+        }
+
     </style>
 </head>
 <body>
@@ -946,8 +1066,7 @@
                 <li><a href="#education" id="nav-education" data-track-category="navigation" data-track-action="click_education">Learn</a></li>
                 <li><a href="#contact" id="nav-contact" data-track-category="navigation" data-track-action="click_contact">Contact</a></li>
             </ul>
-            <!-- Updated nav buttons to show user greeting when logged in -->
-            <!-- Added IDs and data attributes for tracking auth buttons -->
+            <!-- Updated nav buttons to include account balance and fund account button -->
             <div class="nav-buttons" id="navButtons">
                 <a href="#login" class="btn btn-secondary" id="btn-nav-login" data-track-category="authentication" data-track-action="click_login">Log In</a>
                 <a href="#signup" class="btn btn-primary cta-primary" id="btn-nav-signup" data-track-category="authentication" data-track-action="click_signup">Get Started</a>
@@ -1548,6 +1667,40 @@
         </div>
     </div>
 
+    <!-- Added Fund Account Modal -->
+    <div id="fundAccountModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeFundAccountModal">&times;</span>
+            <h2>Fund Your Account</h2>
+            <p>Add money to your Groundfloor account to start investing.</p>
+            
+            <form id="fundAccountForm" class="auth-form">
+                <div class="form-group">
+                    <label for="fund-amount">Amount to Fund</label>
+                    <div class="amount-input-group">
+                        <input type="number" id="fund-amount" name="fund-amount" min="10" step="0.01" required placeholder="Enter amount">
+                    </div>
+                    <p class="min-investment-note">Minimum funding amount: $10</p>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" id="btn-submit-fund">Add Funds</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Added Segment Debug Panel -->
+    <div class="segment-debug-panel" id="segmentDebugPanel">
+        <div class="debug-panel-header">
+            <div class="debug-panel-title">📊 SEGMENT EVENTS</div>
+            <button class="debug-toggle-btn" id="debugToggleBtn">HIDE</button>
+        </div>
+        <div class="debug-panel-content" id="debugPanelContent">
+            <div style="color: #666; text-align: center; padding: 2rem;">
+                Waiting for events...
+            </div>
+        </div>
+    </div>
+
     
     <script>
         let cachedElements = {};
@@ -1559,22 +1712,128 @@
             return cachedElements[id];
         }
 
+        let segmentEvents = [];
+        const maxEvents = 50;
+
+        function addDebugEvent(type, eventName, properties = {}) {
+            const timestamp = new Date().toLocaleTimeString();
+            const event = {
+                type,
+                eventName,
+                properties,
+                timestamp
+            };
+            
+            segmentEvents.unshift(event);
+            if (segmentEvents.length > maxEvents) {
+                segmentEvents.pop();
+            }
+            
+            updateDebugPanel();
+        }
+
+        function updateDebugPanel() {
+            const content = getElement('debugPanelContent');
+            if (!content) return;
+            
+            if (segmentEvents.length === 0) {
+                content.innerHTML = '<div style="color: #666; text-align: center; padding: 2rem;">Waiting for events...</div>';
+                return;
+            }
+            
+            content.innerHTML = segmentEvents.map(event => `
+                <div class="debug-event">
+                    <div class="debug-event-type">${event.type.toUpperCase()}</div>
+                    <div class="debug-event-name">${event.eventName || 'N/A'}</div>
+                    <div class="debug-event-props">${JSON.stringify(event.properties, null, 2)}</div>
+                    <div class="debug-event-time">${event.timestamp}</div>
+                </div>
+            `).join('');
+        }
+
+        // Toggle debug panel
+        const debugToggleBtn = getElement('debugToggleBtn');
+        const debugPanel = getElement('segmentDebugPanel');
+        
+        if (debugToggleBtn && debugPanel) {
+            debugToggleBtn.addEventListener('click', () => {
+                debugPanel.classList.toggle('minimized');
+                debugToggleBtn.textContent = debugPanel.classList.contains('minimized') ? 'SHOW' : 'HIDE';
+            });
+        }
+
+        const originalAnalytics = window.analytics;
+        if (originalAnalytics) {
+            const originalTrack = originalAnalytics.track;
+            const originalIdentify = originalAnalytics.identify;
+            const originalPage = originalAnalytics.page;
+            
+            originalAnalytics.track = function(eventName, properties) {
+                addDebugEvent('track', eventName, properties);
+                return originalTrack.apply(this, arguments);
+            };
+            
+            originalAnalytics.identify = function(userId, traits) {
+                addDebugEvent('identify', `User: ${userId}`, traits);
+                return originalIdentify.apply(this, arguments);
+            };
+            
+            originalAnalytics.page = function(category, name, properties) {
+                addDebugEvent('page', name || category || 'Page View', properties);
+                return originalPage.apply(this, arguments);
+            };
+        }
+
+        function getAccountBalance() {
+            const user = JSON.parse(localStorage.getItem('groundfloorUser'));
+            return user && user.accountBalance !== undefined ? user.accountBalance : 0;
+        }
+
+        function updateAccountBalance(newBalance) {
+            const user = JSON.parse(localStorage.getItem('groundfloorUser'));
+            if (user) {
+                user.accountBalance = newBalance;
+                localStorage.setItem('groundfloorUser', JSON.stringify(user));
+                updateBalanceDisplay();
+            }
+        }
+
+        function updateBalanceDisplay() {
+            const balanceDisplay = getElement('balance-amount');
+            if (balanceDisplay) {
+                const balance = getAccountBalance();
+                balanceDisplay.textContent = `$${balance.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+            }
+        }
+
         function checkLoginState() {
-            // Use the correct key for storing user data
             const user = JSON.parse(localStorage.getItem('groundfloorUser'));
             const navButtons = getElement('navButtons');
             
             if (user && user.name) {
+                const balance = user.accountBalance !== undefined ? user.accountBalance : 0;
                 navButtons.innerHTML = `
+                    <div class="account-balance">
+                        <div class="balance-display">
+                            Balance: <span id="balance-amount">$${balance.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                        </div>
+                        <button class="fund-account-btn" id="btn-fund-account">Fund Account</button>
+                    </div>
                     <div class="user-greeting" id="user-greeting">
                         Welcome, <span id="user-name-display">${user.name}</span>
                         <button class="logout-btn" id="btn-logout" data-track-category="authentication" data-track-action="click_logout">Log Out</button>
                     </div>
                 `;
-                // Re-attach logout event listener after innerHTML change
+                
+                // Attach event listeners
                 const logoutBtn = getElement('btn-logout');
                 if (logoutBtn) {
                     logoutBtn.addEventListener('click', logout);
+                }
+                
+                const fundAccountBtn = getElement('btn-fund-account');
+                if (fundAccountBtn) {
+                    fundAccountBtn.addEventListener('click', openFundAccountModal);
                 }
             } else {
                 navButtons.innerHTML = `
@@ -1622,10 +1881,12 @@
             const email = getElement('user-email-login').value;
             const name = email.split('@')[0];
             
+            // Mock user login - in a real app, this would involve an API call
             const user = {
                 name: name.charAt(0).toUpperCase() + name.slice(1),
                 email: email,
-                userId: email
+                userId: email,
+                accountBalance: Math.random() * 10000 // Simulate a random balance
             };
             
             localStorage.setItem('groundfloorUser', JSON.stringify(user));
@@ -1649,48 +1910,61 @@
             window.location.href = '#products';
         });
 
-        getElement('signupForm').addEventListener('submit', function(e) {
+        // Modified signup function to initialize account balance
+        function signup(e) {
             e.preventDefault();
-            const password = getElement('user-password').value;
-            const confirm = getElement('user-password-confirm').value;
-            
-            if (password !== confirm) {
-                alert('Passwords do not match!');
-                return;
-            }
             
             const name = getElement('user-name').value;
             const email = getElement('user-email').value;
+            const password = getElement('user-password').value;
+            const passwordConfirm = getElement('user-password-confirm').value;
+            
+            if (password !== passwordConfirm) {
+                alert('Passwords do not match. Please try again.');
+                return;
+            }
             
             const user = {
                 name: name,
                 email: email,
-                userId: email,
+                password: password, // In a real app, hash the password before storing
+                accountBalance: 0,
                 createdAt: new Date().toISOString()
             };
             
             localStorage.setItem('groundfloorUser', JSON.stringify(user));
             
-            // Identify user in Segment with traits
+            // Track Signed Up event and Identify user
             if (typeof analytics !== 'undefined') {
-                analytics.identify(user.userId, {
-                    name: user.name,
-                    email: user.email,
+                analytics.identify(email, {
+                    name: name,
+                    email: email,
                     createdAt: user.createdAt
                 });
                 
-                // Track Signed Up event (B2B SaaS spec)
                 analytics.track('Signed Up', {
-                    type: 'organic',
-                    email: user.email,
-                    name: user.name
+                    type: 'user',
+                    email: email,
+                    name: name
                 });
             }
             
+            // Use generic closeModal function
+            closeModal('signupModal'); // Assuming signup is within a modal
             checkLoginState();
-            alert('Account created successfully! Welcome, ' + user.name + '!');
+            alert('Account created successfully!');
             window.location.href = '#products';
-        });
+        }
+
+        function closeModal(modalId) {
+            const modal = getElement(modalId);
+            if (modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        getElement('signupForm').addEventListener('submit', signup);
+
 
         const productData = {
             flywheel: {
@@ -1705,7 +1979,7 @@
                     'Chosen by 76% of Groundfloor users'
                 ],
                 minInvestment: 100,
-                category: 'Portfolio',
+                category: 'Real Estate Investment',
                 sku: 'GF-FLYWHEEL'
             },
             loans: {
@@ -1720,7 +1994,7 @@
                     'Terms typically 6-24 months'
                 ],
                 minInvestment: 10,
-                category: 'Individual Loans',
+                category: 'Real Estate Investment',
                 sku: 'GF-LRO'
             },
             notes: {
@@ -1735,7 +2009,7 @@
                     'Simple, straightforward investing'
                 ],
                 minInvestment: 1000,
-                category: 'Notes',
+                category: 'Real Estate Investment',
                 sku: 'GF-NOTES'
             },
             ira: {
@@ -1750,10 +2024,12 @@
                     'Secure your financial future'
                 ],
                 minInvestment: 100,
-                category: 'IRA',
+                category: 'Retirement Account',
                 sku: 'GF-IRA'
             }
         };
+
+        let currentProduct = ''; // Variable to store the current product being viewed in modal
 
         function openProductModal(productType) {
             const user = JSON.parse(localStorage.getItem('groundfloorUser'));
@@ -1775,7 +2051,9 @@
                     category: product.category,
                     name: product.title,
                     price: product.minInvestment,
-                    currency: 'USD'
+                    currency: 'USD',
+                    user_email: user.email,
+                    user_name: user.name
                 });
             }
             
@@ -1796,15 +2074,14 @@
             amountInput.min = product.minInvestment;
             amountInput.value = product.minInvestment;
             amountInput.dataset.productType = productType;
+            currentProduct = productType; // Set current product
             
             modal.classList.add('active');
             
             // Track Checkout Started event (Ecommerce v2 spec)
             if (typeof analytics !== 'undefined') {
                 analytics.track('Checkout Started', {
-                    order_id: 'temp-' + Date.now(),
-                    value: product.minInvestment,
-                    revenue: product.minInvestment,
+                    checkout_id: 'CHK-' + Date.now(), // Generate a temporary checkout ID
                     currency: 'USD',
                     products: [{
                         product_id: product.sku,
@@ -1813,7 +2090,9 @@
                         price: product.minInvestment,
                         quantity: 1,
                         category: product.category
-                    }]
+                    }],
+                    user_email: user.email,
+                    user_name: user.name
                 });
             }
         }
@@ -1821,60 +2100,62 @@
         function closeProductModal() {
             const modal = getElement('productModal');
             modal.classList.remove('active');
+            currentProduct = ''; // Clear current product
         }
 
-        function processInvestment() {
-            const amountInput = getElement('investment-amount');
-            const amount = parseFloat(amountInput.value);
-            const productType = amountInput.dataset.productType;
-            const product = productData[productType];
+        // Added logic to check for sufficient balance and deduct from it
+        function completePurchase(e) {
+            e.preventDefault();
+            
+            const productName = currentProduct.charAt(0).toUpperCase() + currentProduct.slice(1);
+            const amount = parseFloat(getElement('investment-amount').value);
+            const minInvestment = parseFloat(getElement('investment-amount').min);
+            
+            if (amount < minInvestment) {
+                alert(`Minimum investment for ${productName} is $${minInvestment}`);
+                return;
+            }
+            
+            const currentBalance = getAccountBalance();
+            if (amount > currentBalance) {
+                alert(`Insufficient funds. Your current balance is $${currentBalance.toFixed(2)}. Please fund your account first.`);
+                return;
+            }
+            
+            const newBalance = currentBalance - amount;
+            updateAccountBalance(newBalance);
+            
             const user = JSON.parse(localStorage.getItem('groundfloorUser'));
+            const orderId = 'ORD-' + Date.now();
+            const checkoutId = 'CHK-' + Date.now(); // Use the same checkout ID as when starting checkout
             
-            if (amount < product.minInvestment) {
-                alert(`Minimum investment for ${product.title} is $${product.minInvestment}`);
-                return;
-            }
-            
-            if (isNaN(amount) || amount <= 0) {
-                alert('Please enter a valid investment amount.');
-                return;
-            }
-            
-            const orderId = 'GF-' + Date.now();
-            
-            // Track Product Added event (Ecommerce v2 spec)
+            // Track Order Completed event (Ecommerce v2 spec)
             if (typeof analytics !== 'undefined') {
-                analytics.track('Product Added', {
-                    cart_id: orderId,
-                    product_id: product.sku,
-                    sku: product.sku,
-                    category: product.category,
-                    name: product.title,
-                    price: amount,
-                    quantity: 1,
-                    currency: 'USD'
-                });
-                
-                // Track Order Completed event (Ecommerce v2 spec)
                 analytics.track('Order Completed', {
-                    checkout_id: orderId,
+                    checkout_id: checkoutId,
                     order_id: orderId,
                     total: amount,
                     revenue: amount,
                     currency: 'USD',
                     products: [{
-                        product_id: product.sku,
-                        sku: product.sku,
-                        name: product.title,
+                        product_id: `gf-${currentProduct}`,
+                        sku: `GF-${currentProduct.toUpperCase()}-001`,
+                        category: 'Real Estate Investment',
+                        name: productName,
                         price: amount,
                         quantity: 1,
-                        category: product.category
-                    }]
+                        currency: 'USD'
+                    }],
+                    user_email: user ? user.email : 'unknown',
+                    user_name: user ? user.name : 'unknown',
+                    new_balance: newBalance,
+                    previous_balance: currentBalance
                 });
             }
             
-            alert(`Success! ${user.name}, you have invested $${amount.toFixed(2)} in ${product.title}.\n\nYour investment is being processed and will appear in your portfolio shortly.`);
-            closeProductModal();
+            closeModal('productModal');
+            getElement('investment-amount').value = '';
+            alert(`Successfully invested $${amount} in ${productName}!\n\nYour new balance: $${newBalance.toFixed(2)}`);
         }
 
         function toggleFAQ(element) {
@@ -1912,8 +2193,64 @@
             getElement('btn-close-modal').addEventListener('click', closeProductModal);
             
             // Attach invest button event
-            getElement('btn-invest-now').addEventListener('click', processInvestment);
+            getElement('btn-invest-now').addEventListener('click', completePurchase);
+
+            // Add event listeners for Fund Account Modal
+            const fundAccountBtn = getElement('btn-fund-account');
+            if (fundAccountBtn) {
+                fundAccountBtn.addEventListener('click', openFundAccountModal);
+            }
+
+            const closeFundAccountModalBtn = getElement('closeFundAccountModal');
+            if (closeFundAccountModalBtn) {
+                closeFundAccountModalBtn.addEventListener('click', () => closeModal('fundAccountModal'));
+            }
+
+            const fundAccountFormElement = getElement('fundAccountForm');
+            if (fundAccountFormElement) {
+                fundAccountFormElement.addEventListener('submit', fundAccount);
+            }
         });
+
+        function openFundAccountModal() {
+            const modal = getElement('fundAccountModal');
+            if (modal) {
+                modal.style.display = 'block';
+            }
+        }
+
+        function fundAccount(e) {
+            e.preventDefault();
+            
+            const amount = parseFloat(getElement('fund-amount').value);
+            
+            if (isNaN(amount) || amount < 10) {
+                alert('Minimum funding amount is $10. Please enter a valid amount.');
+                return;
+            }
+            
+            const currentBalance = getAccountBalance();
+            const newBalance = currentBalance + amount;
+            updateAccountBalance(newBalance);
+            
+            const user = JSON.parse(localStorage.getItem('groundfloorUser'));
+            
+            if (typeof analytics !== 'undefined') {
+                analytics.track('Account Funded', {
+                    amount: amount,
+                    new_balance: newBalance,
+                    previous_balance: currentBalance,
+                    currency: 'USD',
+                    user_email: user ? user.email : 'unknown',
+                    user_name: user ? user.name : 'unknown'
+                });
+            }
+            
+            closeModal('fundAccountModal');
+            getElement('fund-amount').value = ''; // Clear the input field
+            alert(`Successfully added $${amount.toFixed(2)} to your account! Your new balance is $${newBalance.toFixed(2)}.`);
+        }
+
 
         // Smooth scroll for navigation with page tracking
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
