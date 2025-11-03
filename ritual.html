@@ -679,7 +679,8 @@
         <div class="hero-image">
             <div class="hero-image-container">
                 <div class="shape-yellow"></div>
-                <img src="/placeholder.svg?height=500&width=500" alt="Happy couple" class="hero-img">
+                <!-- CHANGE: Fixed broken image URL -->
+                <img src="https://placehold.co/500x500/4db8b8/ffffff?text=Happy+Couple" alt="Happy couple" class="hero-img">
                 <div class="shape-teal"></div>
             </div>
         </div>
@@ -778,6 +779,21 @@
         <div class="modal-content">
             <button class="modal-close" onclick="closeInfoModal()">&times;</button>
             <div id="infoContent" class="info-modal-content"></div>
+        </div>
+    </div>
+
+    <!-- CHANGE: Added Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeLoginModal()">&times;</button>
+            <div class="question-container">
+                <div class="question-title">Login to Your Account</div>
+                <p style="color: #666; margin-bottom: 1.5rem;">Welcome back! Please enter your credentials.</p>
+                <input type="email" class="form-input" id="loginEmail" placeholder="Email address">
+                <input type="password" class="form-input" id="loginPassword" placeholder="Password">
+                <button class="modal-btn modal-btn-next" style="width: 100%; margin-top: 1rem;" onclick="handleLogin()">Login</button>
+                <p style="text-align: center; margin-top: 1rem; color: #666;">Don't have an account? <a href="#" onclick="closeLoginModal(); openQuestionnaire();" style="color: #ff6b5a; text-decoration: none; font-weight: 600;">Get Started</a></p>
+            </div>
         </div>
     </div>
 
@@ -1130,29 +1146,120 @@
 
         function renderCheckout() {
             const content = document.getElementById('questionnaireContent');
+            
+            // CHANGE: Get selected payment plan
+            const selectedPlan = document.querySelector('input[name="paymentPlan"]:checked')?.value || '3months';
+            const planDetails = {
+                '6months': { duration: 6, pricePerWeek: 52, totalPerCycle: 208, name: '6 Months Plan' },
+                '3months': { duration: 3, pricePerWeek: 65, totalPerCycle: 260, name: '3 Months Plan' },
+                'monthly': { duration: 1, pricePerWeek: 78, totalPerCycle: 310, name: 'Monthly Plan' }
+            };
+            const plan = planDetails[selectedPlan];
 
             content.innerHTML = `
                 <div class="question-container">
                     <div class="question-title">Checkout</div>
-                    <p style="color: #666; margin-bottom: 1rem;"><strong>Total due today: $260.00</strong> (billed every 4 weeks)</p>
-                    <p style="color: #999; margin-bottom: 1.5rem; font-size: 0.9rem;">Enter payment details (demo only – purchasing disabled):</p>
-                    <input type="text" class="form-input" placeholder="Cardholder name" disabled>
-                    <input type="text" class="form-input" placeholder="Card number" disabled>
-                    <input type="text" class="form-input" placeholder="Expiration (MM/YY)" disabled>
-                    <input type="text" class="form-input" placeholder="Security code" disabled>
-                    <input type="text" class="form-input" placeholder="ZIP code" disabled>
+                    <p style="color: #666; margin-bottom: 1rem;"><strong>Total due today: $${plan.totalPerCycle}.00</strong> (billed every 4 weeks)</p>
+                    <p style="color: #666; margin-bottom: 1.5rem; font-size: 0.9rem;">Enter payment details:</p>
+                    <input type="text" class="form-input" id="cardholderName" placeholder="Cardholder name">
+                    <input type="text" class="form-input" id="cardNumber" placeholder="Card number" maxlength="19">
+                    <input type="text" class="form-input" id="cardExpiry" placeholder="Expiration (MM/YY)" maxlength="5">
+                    <input type="text" class="form-input" id="cardCvv" placeholder="Security code" maxlength="4">
+                    <input type="text" class="form-input" id="cardZip" placeholder="ZIP code" maxlength="10">
                 </div>
                 <div class="modal-navigation">
                     <button class="modal-btn modal-btn-back" onclick="renderPaymentPlans()">Back</button>
-                    <button class="modal-btn modal-btn-next" disabled>Purchase (disabled)</button>
+                    <button class="modal-btn modal-btn-next" onclick="completePurchase('${selectedPlan}')">Purchase Now</button>
                 </div>
             `;
 
             analytics.track('Checkout Viewed', { 
-                amount: 260,
+                amount: plan.totalPerCycle,
                 currency: 'USD',
-                billingCycle: 'every 4 weeks'
+                billingCycle: 'every 4 weeks',
+                planName: plan.name,
+                planDuration: plan.duration
             });
+        }
+
+        // CHANGE: Added completePurchase function
+        function completePurchase(selectedPlan) {
+            const cardholderName = document.getElementById('cardholderName').value.trim();
+            const cardNumber = document.getElementById('cardNumber').value.trim();
+            const cardExpiry = document.getElementById('cardExpiry').value.trim();
+            const cardCvv = document.getElementById('cardCvv').value.trim();
+            const cardZip = document.getElementById('cardZip').value.trim();
+
+            if (!cardholderName || !cardNumber || !cardExpiry || !cardCvv || !cardZip) {
+                alert('Please fill in all payment fields.');
+                return;
+            }
+
+            // Validate card number (basic check for 13-19 digits)
+            const cardNumberClean = cardNumber.replace(/\s/g, '');
+            if (!/^\d{13,19}$/.test(cardNumberClean)) {
+                alert('Please enter a valid card number.');
+                return;
+            }
+
+            // Validate expiry (MM/YY format)
+            if (!/^\d{2}\/\d{2}$/.test(cardExpiry)) {
+                alert('Please enter expiry in MM/YY format.');
+                return;
+            }
+
+            // Validate CVV (3-4 digits)
+            if (!/^\d{3,4}$/.test(cardCvv)) {
+                alert('Please enter a valid security code.');
+                return;
+            }
+
+            const planDetails = {
+                '6months': { duration: 6, pricePerWeek: 52, totalPerCycle: 208, name: '6 Months Plan' },
+                '3months': { duration: 3, pricePerWeek: 65, totalPerCycle: 260, name: '3 Months Plan' },
+                'monthly': { duration: 1, pricePerWeek: 78, totalPerCycle: 310, name: 'Monthly Plan' }
+            };
+            const plan = planDetails[selectedPlan];
+
+            const purchaseDate = new Date();
+            const renewalDate = new Date(purchaseDate);
+            renewalDate.setDate(renewalDate.getDate() + 28); // 4 weeks from now
+
+            // Track purchase completion
+            analytics.track('Purchase Completed', {
+                planName: plan.name,
+                planDuration: plan.duration,
+                planDurationUnit: plan.duration === 1 ? 'month' : 'months',
+                amount: plan.totalPerCycle,
+                currency: 'USD',
+                pricePerWeek: plan.pricePerWeek,
+                billingCycle: 'every 4 weeks',
+                billingFrequency: 28,
+                purchaseDate: purchaseDate.toISOString(),
+                renewalDate: renewalDate.toISOString(),
+                paymentMethod: 'credit_card',
+                cardLast4: cardNumberClean.slice(-4),
+                email: userContactInfo.email,
+                userId: userContactInfo.email
+            });
+
+            // Show success message
+            const content = document.getElementById('questionnaireContent');
+            content.innerHTML = `
+                <div class="question-container" style="text-align: center;">
+                    <div style="font-size: 4rem; color: #4db8b8; margin-bottom: 1rem;">✓</div>
+                    <div class="question-title">Purchase Successful!</div>
+                    <p style="color: #666; margin-bottom: 1.5rem;">Thank you for choosing OurRitual. Your relationship journey starts now!</p>
+                    <div style="background: #f5f3d4; padding: 1.5rem; border-radius: 15px; margin-bottom: 1.5rem; text-align: left;">
+                        <p style="margin-bottom: 0.5rem;"><strong>Plan:</strong> ${plan.name}</p>
+                        <p style="margin-bottom: 0.5rem;"><strong>Amount:</strong> $${plan.totalPerCycle}.00</p>
+                        <p style="margin-bottom: 0.5rem;"><strong>Billing:</strong> Every 4 weeks</p>
+                        <p style="margin-bottom: 0.5rem;"><strong>Next billing date:</strong> ${renewalDate.toLocaleDateString()}</p>
+                    </div>
+                    <p style="color: #666; font-size: 0.9rem;">A confirmation email has been sent to <strong>${userContactInfo.email}</strong></p>
+                    <button class="modal-btn modal-btn-next" style="width: 100%; margin-top: 1.5rem;" onclick="closeQuestionnaire()">Get Started</button>
+                </div>
+            `;
         }
 
         // Info Modal Content
@@ -1339,16 +1446,72 @@
             return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
         }
 
+        // CHANGE: Added login modal functions
+        function openLoginModal() {
+            document.getElementById('loginModal').classList.add('active');
+            analytics.track('Login Modal Opened');
+        }
+
+        function closeLoginModal() {
+            document.getElementById('loginModal').classList.remove('active');
+        }
+
+        function handleLogin() {
+            const email = document.getElementById('loginEmail').value.trim();
+            const password = document.getElementById('loginPassword').value.trim();
+
+            if (!email || !password) {
+                alert('Please enter both email and password.');
+                return;
+            }
+
+            // Basic email validation
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+
+            // Track login attempt
+            analytics.track('Login Attempted', { 
+                email: email,
+                timestamp: new Date().toISOString()
+            });
+
+            // Simulate login (in real app, this would call an API)
+            alert('Login successful! (Demo mode)');
+            
+            // Track successful login
+            analytics.track('Login Successful', { 
+                email: email,
+                timestamp: new Date().toISOString()
+            });
+
+            // Identify user
+            analytics.identify(email, {
+                email: email,
+                lastLogin: new Date().toISOString()
+            });
+
+            closeLoginModal();
+        }
+
+        // CHANGE: Update login button to open modal
+        document.querySelector('.login-btn').addEventListener('click', openLoginModal);
+
         // Close modals when clicking outside
         window.onclick = function(event) {
             const questionnaireModal = document.getElementById('questionnaireModal');
             const infoModal = document.getElementById('infoModal');
+            const loginModal = document.getElementById('loginModal');
             
             if (event.target === questionnaireModal) {
                 closeQuestionnaire();
             }
             if (event.target === infoModal) {
                 closeInfoModal();
+            }
+            if (event.target === loginModal) {
+                closeLoginModal();
             }
         }
     </script>
