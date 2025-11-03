@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OurRitual - Effective Relationship Support for Modern Couples</title>
+    
+    <!-- Segment analytics snippet -->
+    <script>
+      !function(){var i="analytics",analytics=window[i]=window[i]||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","screen","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware","register"];analytics.factory=function(e){return function(){if(window[i].initialized)return window[i][e].apply(window[i],arguments);var n=Array.prototype.slice.call(arguments);if(["track","screen","alias","group","page","identify"].indexOf(e)>-1){var c=document.querySelector("link[rel='canonical']");n.push({__t:"bpc",c:c&&c.getAttribute("href")||void 0,p:location.pathname,u:location.href,s:location.search,t:document.title,r:document.referrer})}n.unshift(e);analytics.push(n);return analytics}};for(var n=0;n<analytics.methods.length;n++){var key=analytics.methods[n];analytics[key]=analytics.factory(key)}analytics.load=function(key,n){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.setAttribute("data-global-segment-analytics-key",i);t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var r=document.getElementsByTagName("script")[0];r.parentNode.insertBefore(t,r);analytics._loadOptions=n};analytics._writeKey="RzXioQCaqlhab4TDfFpysXPJijG2usrE";;analytics.SNIPPET_VERSION="5.2.0";
+      analytics.load("RzXioQCaqlhab4TDfFpysXPJijG2usrE");
+      analytics.page();
+      }}();
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #2d2d2d;
+            background-color: #faf9f7;
+        }
+
+        /* Header Styles */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            background-color: #faf9f7;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2d2d2d;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background-color: #ff6b5a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #2d2d2d;
+            font-weight: 500;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        nav a:hover {
+            color: #ff6b5a;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .login-btn {
+            color: #ff6b5a;
+            background: none;
+            border: none;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .login-btn:hover {
+            opacity: 0.8;
+        }
+
+        .cta-btn {
+            background-color: #ff6b5a;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            border: none;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .cta-btn:hover {
+            background-color: #ff5544;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            padding: 5rem 5%;
+            align-items: center;
+            min-height: 600px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: #2d2d2d;
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            color: #666;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .hero-image {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .hero-img {
+            width: 100%;
+            height: auto;
+            border-radius: 50%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .shape-yellow {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background-color: #e8e39f;
+            border-radius: 50%;
+            top: -50px;
+            left: -50px;
+            z-index: 1;
+        }
+
+        .shape-teal {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background-color: #4db8b8;
+            border-radius: 50%;
+            bottom: -50px;
+            right: -100px;
+            z-index: 1;
+        }
+
+        /* Trust Badges */
+        .trust-section {
+            padding: 3rem 5%;
+            text-align: center;
+            border-top: 1px solid #e5e5e5;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .trust-section p {
+            color: #999;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .trust-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .trust-logo {
+            color: #999;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        /* How It Works Section */
+        .how-it-works {
+            padding: 5rem 5%;
+            text-align: center;
+        }
+
+        .section-label {
+            color: #ff6b5a;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .how-it-works h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: #2d2d2d;
+        }
+
+        .how-it-works > p {
+            font-size: 1.25rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .feature {
+            text-align: center;
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon-calendar {
+            font-size: 3rem;
+            color: #ff6b5a;
+        }
+
+        .icon-progress {
+            font-size: 3rem;
+            color: #ff6b5a;
+        }
+
+        .icon-goal {
+            font-size: 3rem;
+            color: #ff6b5a;
+        }
+
+        .feature h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #2d2d2d;
+        }
+
+        .feature p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Impact Section */
+        .impact {
+            padding: 5rem 5%;
+            text-align: center;
+        }
+
+        .impact h2 {
+            font-size: 3rem;
+            margin-bottom: 4rem;
+            color: #2d2d2d;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            background-color: #f5f3d4;
+            padding: 4rem 3rem;
+            border-radius: 30px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 4rem;
+            font-weight: 700;
+            color: #ff6b5a;
+            margin-bottom: 1rem;
+        }
+
+        .stat-text {
+            color: #2d2d2d;
+            font-size: 1.1rem;
+            line-height: 1.4;
+        }
+
+        /* Session Control Section */
+        .session-control {
+            padding: 4rem 5%;
+            text-align: center;
+            background-color: #fff;
+            margin: 3rem 5%;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .session-control h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #2d2d2d;
+        }
+
+        .session-status {
+            font-size: 1.25rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .session-status.active {
+            color: #4db8b8;
+            font-weight: 600;
+        }
+
+        .session-btn {
+            background-color: #4db8b8;
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            border: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .session-btn:hover {
+            background-color: #3da8a8;
+            transform: translateY(-2px);
+        }
+
+        .session-btn.end {
+            background-color: #ff6b5a;
+        }
+
+        .session-btn.end:hover {
+            background-color: #ff5544;
+        }
+
+        .session-info {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background-color: #f5f3d4;
+            border-radius: 15px;
+            display: none;
+        }
+
+        .session-info.active {
+            display: block;
+        }
+
+        .session-timer {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2d2d2d;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.6);
+            animation: fadeIn 0.3s;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: #faf9f7;
+            margin: auto;
+            padding: 3rem;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 700px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideUp 0.3s;
+        }
+
+        .modal-close {
+            position: absolute;
+            right: 1.5rem;
+            top: 1.5rem;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #999;
+            cursor: pointer;
+            background: none;
+            border: none;
+            transition: color 0.3s;
+        }
+
+        .modal-close:hover {
+            color: #2d2d2d;
+        }
+
+        .question-container {
+            margin-bottom: 2rem;
+        }
+
+        .question-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #2d2d2d;
+        }
+
+        .question-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            background-color: #fff;
+            border: 2px solid #e5e5e5;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .option-label:hover {
+            border-color: #ff6b5a;
+            background-color: #fff5f4;
+        }
+
+        .option-label input {
+            margin-right: 1rem;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .modal-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+            gap: 1rem;
+        }
+
+        .modal-btn {
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            border: none;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .modal-btn-back {
+            background-color: #e5e5e5;
+            color: #2d2d2d;
+        }
+
+        .modal-btn-back:hover {
+            background-color: #d5d5d5;
+        }
+
+        .modal-btn-next {
+            background-color: #ff6b5a;
+            color: white;
+            flex: 1;
+        }
+
+        .modal-btn-next:hover {
+            background-color: #ff5544;
+        }
+
+        .modal-btn-next:disabled {
+            background-color: #ffc5c5;
+            cursor: not-allowed;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background-color: #e5e5e5;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: #ff6b5a;
+            transition: width 0.3s;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border: 2px solid #e5e5e5;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #ff6b5a;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .checkbox-label input {
+            margin-top: 0.25rem;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .plan-card {
+            background-color: #fff;
+            border: 2px solid #e5e5e5;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .plan-card h3 {
+            color: #ff6b5a;
+            margin-bottom: 1rem;
+        }
+
+        .plan-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2d2d2d;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-modal-content {
+            line-height: 1.8;
+        }
+
+        .info-modal-content h3 {
+            color: #ff6b5a;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-modal-content ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-modal-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .features,
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .modal-content {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <div class="logo-icon">🌸</div>
+            <span>OurRitual</span>
+        </div>
+        <nav>
+            <a onclick="openInfoModal('howItWorks')">How It Works</a>
+            <a onclick="openInfoModal('reviews')">Reviews</a>
+            <a onclick="openInfoModal('faq')">FAQ</a>
+            <a href="#experts">Our Experts</a>
+            <a href="#blog">Blog</a>
+        </nav>
+        <div class="nav-buttons">
+            <button class="login-btn">Login</button>
+            <button class="cta-btn" onclick="openQuestionnaire()">Get Started</button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Effective Relationship Support for Modern Couples</h1>
+            <p>OurRitual is a new approach to couples therapy that combines both weekly Expert sessions and personalized self-guided work through our app.</p>
+            <button class="cta-btn" onclick="openQuestionnaire()">Get Started</button>
+        </div>
+        <div class="hero-image">
+            <div class="hero-image-container">
+                <div class="shape-yellow"></div>
+                <img src="/placeholder.svg?height=500&width=500" alt="Happy couple" class="hero-img">
+                <div class="shape-teal"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Section -->
+    <section class="trust-section">
+        <p>Trusted by:</p>
+        <div class="trust-logos">
+            <span class="trust-logo">NBC</span>
+            <span class="trust-logo">POWER OF TWO</span>
+            <span class="trust-logo">GOTTMAN INSTITUTE</span>
+            <span class="trust-logo">VERYWELL HEALTH</span>
+            <span class="trust-logo">FORBES HEALTH</span>
+            <span class="trust-logo">PSYCHOLOGY TODAY</span>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works" id="how-it-works">
+        <p class="section-label">HOW IT WORKS</p>
+        <h2>The OurRitual Difference</h2>
+        <p>OurRitual combines Expert-led sessions with science-based digital exercises to achieve your relationship goals on your terms.</p>
+        
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">
+                    <div class="icon-calendar">📅</div>
+                </div>
+                <h3>Attend weekly Expert sessions</h3>
+                <p>Get matched to an Expert and attend sessions together, or separately. All of our Experts are licensed professionals and available 24/7.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">
+                    <div class="icon-progress">🔄</div>
+                </div>
+                <h3>Take control of your progress</h3>
+                <p>Pair your weekly sessions with our science-backed digital exercises that fit into your schedule and your unique needs.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">
+                    <div class="icon-goal">🎯</div>
+                </div>
+                <h3>Achieve your relationship goals</h3>
+                <p>We're with you every step of the way, offering ongoing support and keeping you motivated on your journey.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section class="impact">
+        <p class="section-label">OUR IMPACT</p>
+        <h2>Science-Backed and Effective</h2>
+        
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-number">91%</div>
+                <p class="stat-text">feel improvements in their relationship after 4 weeks</p>
+            </div>
+            <div class="stat">
+                <div class="stat-number">88%</div>
+                <p class="stat-text">feel more hopeful about their relationship</p>
+            </div>
+            <div class="stat">
+                <div class="stat-number">94%</div>
+                <p class="stat-text">feel less anxious about their relationship challenges</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Session Control Section -->
+    <section class="session-control">
+        <h2>Session Control</h2>
+        <p class="session-status" id="sessionStatus">No active session</p>
+        <button class="session-btn" id="sessionBtn" onclick="toggleSession()">Start Session</button>
+        
+        <div class="session-info" id="sessionInfo">
+            <div class="session-timer" id="sessionTimer">00:00:00</div>
+            <p>Session in progress...</p>
+        </div>
+    </section>
+
+    <!-- Questionnaire Modal -->
+    <div id="questionnaireModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeQuestionnaire()">&times;</button>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div id="questionnaireContent"></div>
+        </div>
+    </div>
+
+    <!-- Info Modal -->
+    <div id="infoModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeInfoModal()">&times;</button>
+            <div id="infoContent" class="info-modal-content"></div>
+        </div>
+    </div>
+
+    <script>
+        // Questionnaire Data
+        const questionnaireSteps = [
+            {
+                id: 'relationshipStatus',
+                question: 'What is your relationship status?',
+                type: 'radio',
+                options: ['Dating', 'Engaged', 'Married', 'Domestic partnership', 'Long-term relationship', 'Other']
+            },
+            {
+                id: 'therapyBefore',
+                question: 'Have you been to therapy before?',
+                type: 'radio',
+                options: ['Yes', 'No']
+            },
+            {
+                id: 'length',
+                question: 'How long have you and your partner been together?',
+                type: 'radio',
+                options: ['Less than 6 months', '6-12 months', '1-3 years', '4-7 years', '8+ years']
+            },
+            {
+                id: 'areas',
+                question: 'Which areas do you need help with? (Select up to 3)',
+                type: 'checkbox',
+                maxSelect: 3,
+                options: ['Improving communication', 'Feeling closer / more connected', 'Managing conflict', 'Rebuilding trust / infidelity', 'Balancing parenting responsibilities', 'Long-distance challenges', 'Sexual intimacy', 'Other']
+            },
+            {
+                id: 'orientation',
+                question: 'What is your sexual orientation?',
+                type: 'radio',
+                options: ['Straight', 'Gay', 'Bisexual', 'Pansexual', 'Other']
+            },
+            {
+                id: 'gender',
+                question: 'What is your gender identity?',
+                type: 'radio',
+                options: ['Man', 'Woman', 'Non-binary', 'Other']
+            },
+            {
+                id: 'age',
+                question: 'Select your age range:',
+                type: 'radio',
+                options: ['18-25', '26-35', '36-45', '46-55', '56+']
+            },
+            {
+                id: 'kids',
+                question: 'Do you have children?',
+                type: 'radio',
+                options: ['Yes', 'No']
+            },
+            {
+                id: 'urgency',
+                question: 'How time-sensitive is your challenge?',
+                type: 'radio',
+                options: ['1 – Not urgent', '2', '3', '4', '5 – Extremely urgent']
+            },
+            {
+                id: 'source',
+                question: 'Where did you first hear about OurRitual?',
+                type: 'radio',
+                options: ['Friend or family', 'Internet search', 'Social media', 'Podcast or blog', 'AI search/chat (e.g., ChatGPT)', 'Other']
+            },
+            {
+                id: 'commitment',
+                question: 'How committed are you to staying in this relationship? (1 = not committed, 5 = fully committed)',
+                type: 'radio',
+                options: ['1', '2', '3', '4', '5']
+            },
+            {
+                id: 'startAs',
+                question: 'Do you want to start on your own or as a couple?',
+                type: 'radio',
+                options: ['Individual', 'Couple']
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let questionnaireAnswers = {};
+        let userContactInfo = {};
+
+        function openQuestionnaire() {
+            document.getElementById('questionnaireModal').classList.add('active');
+            currentQuestionIndex = 0;
+            questionnaireAnswers = {};
+            renderQuestion();
+            
+            // Track questionnaire started
+            analytics.track('Questionnaire Started');
+        }
+
+        function closeQuestionnaire() {
+            document.getElementById('questionnaireModal').classList.remove('active');
+            
+            // Track questionnaire abandoned
+            analytics.track('Questionnaire Abandoned', { 
+                step: currentQuestionIndex,
+                completionPercentage: Math.round((currentQuestionIndex / questionnaireSteps.length) * 100)
+            });
+        }
+
+        function renderQuestion() {
+            const step = questionnaireSteps[currentQuestionIndex];
+            const content = document.getElementById('questionnaireContent');
+            const progress = ((currentQuestionIndex + 1) / questionnaireSteps.length) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+
+            let html = `
+                <div class="question-container">
+                    <div class="question-title">${step.question}</div>
+                    <div class="question-options">
+            `;
+
+            step.options.forEach((option, index) => {
+                const inputType = step.type;
+                const inputName = step.id;
+                const isChecked = step.type === 'checkbox' 
+                    ? (questionnaireAnswers[step.id] && questionnaireAnswers[step.id].includes(option))
+                    : (questionnaireAnswers[step.id] === option);
+
+                html += `
+                    <label class="option-label">
+                        <input type="${inputType}" name="${inputName}" value="${option}" 
+                            ${isChecked ? 'checked' : ''}
+                            onchange="handleAnswerChange('${step.id}', '${option}', '${step.type}', ${step.maxSelect || 0})">
+                        <span>${option}</span>
+                    </label>
+                `;
+            });
+
+            html += `
+                    </div>
+                </div>
+                <div class="modal-navigation">
+            `;
+
+            if (currentQuestionIndex > 0) {
+                html += `<button class="modal-btn modal-btn-back" onclick="previousQuestion()">Back</button>`;
+            }
+
+            const isAnswered = questionnaireAnswers[step.id] && 
+                (step.type === 'checkbox' ? questionnaireAnswers[step.id].length > 0 : true);
+
+            html += `
+                    <button class="modal-btn modal-btn-next" 
+                        ${!isAnswered ? 'disabled' : ''} 
+                        onclick="nextQuestion()" id="nextBtn">
+                        ${currentQuestionIndex === questionnaireSteps.length - 1 ? 'Continue' : 'Next'}
+                    </button>
+                </div>
+            `;
+
+            content.innerHTML = html;
+        }
+
+        function handleAnswerChange(questionId, value, type, maxSelect) {
+            if (type === 'checkbox') {
+                if (!questionnaireAnswers[questionId]) {
+                    questionnaireAnswers[questionId] = [];
+                }
+                
+                const index = questionnaireAnswers[questionId].indexOf(value);
+                if (index > -1) {
+                    questionnaireAnswers[questionId].splice(index, 1);
+                } else {
+                    if (maxSelect && questionnaireAnswers[questionId].length >= maxSelect) {
+                        alert(`Please select up to ${maxSelect} options.`);
+                        event.target.checked = false;
+                        return;
+                    }
+                    questionnaireAnswers[questionId].push(value);
+                }
+            } else {
+                questionnaireAnswers[questionId] = value;
+            }
+
+            // Enable/disable next button
+            const nextBtn = document.getElementById('nextBtn');
+            const isAnswered = questionnaireAnswers[questionId] && 
+                (type === 'checkbox' ? questionnaireAnswers[questionId].length > 0 : true);
+            nextBtn.disabled = !isAnswered;
+
+            const keyQuestions = ['relationshipStatus', 'areas', 'urgency', 'startAs'];
+            if (keyQuestions.includes(questionId)) {
+                analytics.track('Key Question Answered', { 
+                    question: questionId, 
+                    answer: questionnaireAnswers[questionId] 
+                });
+            }
+        }
+
+        function nextQuestion() {
+            if (currentQuestionIndex < questionnaireSteps.length - 1) {
+                currentQuestionIndex++;
+                renderQuestion();
+            } else {
+                renderContactForm();
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                renderQuestion();
+            }
+        }
+
+        function renderContactForm() {
+            const content = document.getElementById('questionnaireContent');
+            document.getElementById('progressFill').style.width = '100%';
+
+            content.innerHTML = `
+                <div class="question-container">
+                    <div class="question-title">Contact Information</div>
+                    <p style="color: #666; margin-bottom: 1.5rem;">Please provide your contact details to continue.</p>
+                    <input type="text" class="form-input" id="firstName" placeholder="First name" required>
+                    <input type="text" class="form-input" id="lastName" placeholder="Last name" required>
+                    <input type="email" class="form-input" id="email" placeholder="Email address" required>
+                    <input type="tel" class="form-input" id="phone" placeholder="Phone number" required>
+                </div>
+                <div class="modal-navigation">
+                    <button class="modal-btn modal-btn-back" onclick="previousQuestion()">Back</button>
+                    <button class="modal-btn modal-btn-next" onclick="submitContactInfo()">Continue</button>
+                </div>
+            `;
+        }
+
+        function submitContactInfo() {
+            const firstName = document.getElementById('firstName').value.trim();
+            const lastName = document.getElementById('lastName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+
+            if (!firstName || !lastName || !email || !phone) {
+                alert('Please fill in all fields.');
+                return;
+            }
+
+            userContactInfo = { firstName, lastName, email, phone };
+
+            analytics.identify(email, {
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                phone: phone,
+                relationshipStatus: questionnaireAnswers.relationshipStatus,
+                therapyBefore: questionnaireAnswers.therapyBefore,
+                relationshipLength: questionnaireAnswers.length,
+                areasNeedingHelp: questionnaireAnswers.areas,
+                urgencyLevel: questionnaireAnswers.urgency,
+                source: questionnaireAnswers.source,
+                commitmentLevel: questionnaireAnswers.commitment,
+                startingAs: questionnaireAnswers.startAs
+            });
+
+            renderTermsConfirmation();
+        }
+
+        function renderTermsConfirmation() {
+            const content = document.getElementById('questionnaireContent');
+
+            content.innerHTML = `
+                <div class="question-container">
+                    <div class="question-title">Confirm Participation Terms</div>
+                    <p style="color: #666; margin-bottom: 1.5rem;">Please confirm the following to proceed:</p>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="term1">
+                            <span>My relationship is not affected by domestic violence</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="term2">
+                            <span>I accept responsibility for my mental health while using these services</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-navigation">
+                    <button class="modal-btn modal-btn-back" onclick="renderContactForm()">Back</button>
+                    <button class="modal-btn modal-btn-next" id="termsBtn" disabled onclick="renderPlanRecommendation()">Continue</button>
+                </div>
+            `;
+
+            document.getElementById('term1').addEventListener('change', checkTerms);
+            document.getElementById('term2').addEventListener('change', checkTerms);
+        }
+
+        function checkTerms() {
+            const term1 = document.getElementById('term1').checked;
+            const term2 = document.getElementById('term2').checked;
+            document.getElementById('termsBtn').disabled = !(term1 && term2);
+        }
+
+        function renderPlanRecommendation() {
+            const content = document.getElementById('questionnaireContent');
+
+            content.innerHTML = `
+                <div class="question-container">
+                    <div class="question-title">Recommended Plan</div>
+                    <div class="plan-card">
+                        <h3>Weekly Couple</h3>
+                        <p style="color: #666; margin-bottom: 1rem;">Benefit from weekly 1:1 support with a relationship expert.</p>
+                        <div class="plan-price">$52 <span style="font-size: 1rem; font-weight: normal; color: #666;">per week</span></div>
+                        <p style="color: #999; font-size: 0.9rem;">14-day money back guarantee</p>
+                    </div>
+                </div>
+                <div class="modal-navigation">
+                    <button class="modal-btn modal-btn-back" onclick="renderTermsConfirmation()">Back</button>
+                    <button class="modal-btn modal-btn-next" onclick="renderPaymentPlans()">Select Plan</button>
+                </div>
+            `;
+
+            analytics.track('Plan Viewed', { 
+                planName: 'Weekly Couple', 
+                pricePerWeek: 52,
+                billingCycle: 'every 4 weeks'
+            });
+        }
+
+        function renderPaymentPlans() {
+            const content = document.getElementById('questionnaireContent');
+
+            content.innerHTML = `
+                <div class="question-container">
+                    <div class="question-title">Choose Your Payment Plan</div>
+                    <div class="question-options">
+                        <label class="option-label">
+                            <input type="radio" name="paymentPlan" value="6months" checked>
+                            <span><strong>6 Months Plan</strong> – $52 per week ($208 every 4 weeks)</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="paymentPlan" value="3months">
+                            <span><strong>3 Months Plan (most popular)</strong> – $65 per week ($260 every 4 weeks)</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="paymentPlan" value="monthly">
+                            <span><strong>Monthly Plan</strong> – $78 per week ($310 every 4 weeks)</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-navigation">
+                    <button class="modal-btn modal-btn-back" onclick="renderPlanRecommendation()">Back</button>
+                    <button class="modal-btn modal-btn-next" onclick="renderCheckout()">Continue to Checkout</button>
+                </div>
+            `;
+        }
+
+        function renderCheckout() {
+            const content = document.getElementById('questionnaireContent');
+
+            content.innerHTML = `
+                <div class="question-container">
+                    <div class="question-title">Checkout</div>
+                    <p style="color: #666; margin-bottom: 1rem;"><strong>Total due today: $260.00</strong> (billed every 4 weeks)</p>
+                    <p style="color: #999; margin-bottom: 1.5rem; font-size: 0.9rem;">Enter payment details (demo only – purchasing disabled):</p>
+                    <input type="text" class="form-input" placeholder="Cardholder name" disabled>
+                    <input type="text" class="form-input" placeholder="Card number" disabled>
+                    <input type="text" class="form-input" placeholder="Expiration (MM/YY)" disabled>
+                    <input type="text" class="form-input" placeholder="Security code" disabled>
+                    <input type="text" class="form-input" placeholder="ZIP code" disabled>
+                </div>
+                <div class="modal-navigation">
+                    <button class="modal-btn modal-btn-back" onclick="renderPaymentPlans()">Back</button>
+                    <button class="modal-btn modal-btn-next" disabled>Purchase (disabled)</button>
+                </div>
+            `;
+
+            analytics.track('Checkout Viewed', { 
+                amount: 260,
+                currency: 'USD',
+                billingCycle: 'every 4 weeks'
+            });
+        }
+
+        // Info Modal Content
+        const infoContent = {
+            howItWorks: {
+                title: 'How It Works',
+                content: `
+                    <h2>How It Works</h2>
+                    <p>OurRitual combines the best of traditional couples therapy with modern technology to provide comprehensive relationship support.</p>
+                    
+                    <h3>1. Get Matched with an Expert</h3>
+                    <p>Based on your unique needs and preferences, we'll match you with a licensed relationship expert who specializes in your specific challenges.</p>
+                    
+                    <h3>2. Weekly Expert Sessions</h3>
+                    <p>Meet with your Expert weekly via video call. Sessions can be attended together as a couple or individually, depending on your preference and needs.</p>
+                    <ul>
+                        <li>Flexible scheduling - available 24/7</li>
+                        <li>Licensed professionals with specialized training</li>
+                        <li>Secure, confidential video sessions</li>
+                    </ul>
+                    
+                    <h3>3. Science-Based Digital Exercises</h3>
+                    <p>Between sessions, access our library of evidence-based exercises and activities designed to strengthen your relationship:</p>
+                    <ul>
+                        <li>Communication skills practice</li>
+                        <li>Conflict resolution techniques</li>
+                        <li>Intimacy-building activities</li>
+                        <li>Progress tracking and insights</li>
+                    </ul>
+                    
+                    <h3>4. Continuous Support</h3>
+                    <p>Your Expert is available for messaging support between sessions, and you'll have access to our community resources and educational content.</p>
+                `
+            },
+            reviews: {
+                title: 'Reviews',
+                content: `
+                    <h2>What Our Couples Say</h2>
+                    <p>Thousands of couples have transformed their relationships with OurRitual. Here's what they have to say:</p>
+                    
+                    <div style="background: #fff; padding: 1.5rem; border-radius: 10px; margin: 1.5rem 0;">
+                        <p style="font-style: italic; margin-bottom: 1rem;">"OurRitual saved our marriage. The combination of weekly sessions and daily exercises gave us the tools we needed to reconnect."</p>
+                        <p style="color: #ff6b5a; font-weight: 600;">— Sarah & Michael, Married 8 years</p>
+                    </div>
+                    
+                    <div style="background: #fff; padding: 1.5rem; border-radius: 10px; margin: 1.5rem 0;">
+                        <p style="font-style: italic; margin-bottom: 1rem;">"We were skeptical about online therapy, but our Expert was amazing. The flexibility to do sessions from home made it so much easier to commit."</p>
+                        <p style="color: #ff6b5a; font-weight: 600;">— James & David, Together 5 years</p>
+                    </div>
+                    
+                    <div style="background: #fff; padding: 1.5rem; border-radius: 10px; margin: 1.5rem 0;">
+                        <p style="font-style: italic; margin-bottom: 1rem;">"The digital exercises between sessions kept us accountable and helped us practice what we learned. We saw improvements within weeks."</p>
+                        <p style="color: #ff6b5a; font-weight: 600;">— Emily & Alex, Engaged</p>
+                    </div>
+                    
+                    <h3>Verified Results</h3>
+                    <ul>
+                        <li>91% of couples report relationship improvements after 4 weeks</li>
+                        <li>88% feel more hopeful about their relationship future</li>
+                        <li>94% experience reduced anxiety about relationship challenges</li>
+                        <li>4.8/5 average rating from over 10,000 couples</li>
+                    </ul>
+                `
+            },
+            faq: {
+                title: 'Frequently Asked Questions',
+                content: `
+                    <h2>Frequently Asked Questions</h2>
+                    
+                    <h3>How does OurRitual work?</h3>
+                    <p>OurRitual combines weekly video sessions with a licensed relationship expert and science-based digital exercises you can do between sessions. This hybrid approach provides comprehensive support for your relationship.</p>
+                    
+                    <h3>How much does it cost?</h3>
+                    <p>Plans start at $52 per week (billed every 4 weeks). We offer flexible payment options including 6-month, 3-month, and monthly plans. All plans include a 14-day money-back guarantee.</p>
+                    
+                    <h3>Are your Experts licensed professionals?</h3>
+                    <p>Yes! All OurRitual Experts are licensed therapists, counselors, or psychologists with specialized training in couples therapy and relationship counseling.</p>
+                    
+                    <h3>Can we do sessions separately or together?</h3>
+                    <p>Both! You can choose to attend sessions as a couple, individually, or a combination of both. Your Expert will work with you to determine the best approach for your situation.</p>
+                    
+                    <h3>What if we don't like our Expert?</h3>
+                    <p>You can request a new Expert at any time, no questions asked. We want to ensure you feel comfortable and supported throughout your journey.</p>
+                    
+                    <h3>Is OurRitual confidential?</h3>
+                    <p>Absolutely. All sessions and communications are completely confidential and HIPAA-compliant. Your privacy and security are our top priorities.</p>
+                    
+                    <h3>How long does it take to see results?</h3>
+                    <p>Many couples report feeling improvements within the first few weeks. However, every relationship is unique, and the timeline varies based on your specific challenges and commitment level.</p>
+                    
+                    <h3>What if my partner isn't interested?</h3>
+                    <p>You can start individually! Many people begin on their own and their partner joins later. Individual work can still create positive changes in your relationship.</p>
+                    
+                    <h3>Do you offer a free trial?</h3>
+                    <p>We offer a 14-day money-back guarantee on all plans. If you're not satisfied within the first two weeks, we'll provide a full refund.</p>
+                `
+            }
+        };
+
+        function openInfoModal(section) {
+            const modal = document.getElementById('infoModal');
+            const content = document.getElementById('infoContent');
+            
+            if (infoContent[section]) {
+                content.innerHTML = infoContent[section].content;
+                modal.classList.add('active');
+                
+                analytics.track('Info Section Viewed', { 
+                    section: section,
+                    sectionTitle: infoContent[section].title
+                });
+            }
+        }
+
+        function closeInfoModal() {
+            document.getElementById('infoModal').classList.remove('active');
+        }
+
+        // Session Control Functions
+        let sessionActive = false;
+        let sessionStartTime = null;
+        let timerInterval = null;
+
+        function toggleSession() {
+            const btn = document.getElementById('sessionBtn');
+            const status = document.getElementById('sessionStatus');
+            const info = document.getElementById('sessionInfo');
+
+            if (!sessionActive) {
+                // Start session
+                sessionActive = true;
+                sessionStartTime = new Date();
+                btn.textContent = 'End Session';
+                btn.classList.add('end');
+                status.textContent = 'Session Active';
+                status.classList.add('active');
+                info.classList.add('active');
+                
+                // Start timer
+                timerInterval = setInterval(updateTimer, 1000);
+                
+                analytics.track('Session Started', {
+                    timestamp: sessionStartTime.toISOString()
+                });
+            } else {
+                // End session
+                sessionActive = false;
+                const sessionEndTime = new Date();
+                const duration = Math.floor((sessionEndTime - sessionStartTime) / 1000);
+                
+                btn.textContent = 'Start Session';
+                btn.classList.remove('end');
+                status.textContent = 'No active session';
+                status.classList.remove('active');
+                info.classList.remove('active');
+                
+                // Stop timer
+                clearInterval(timerInterval);
+                document.getElementById('sessionTimer').textContent = '00:00:00';
+                
+                analytics.track('Session Ended', { 
+                    duration: duration,
+                    durationFormatted: formatTime(duration),
+                    timestamp: sessionEndTime.toISOString()
+                });
+                
+                alert(`Session ended! Duration: ${formatTime(duration)}`);
+            }
+        }
+
+        function updateTimer() {
+            if (sessionActive && sessionStartTime) {
+                const now = new Date();
+                const elapsed = Math.floor((now - sessionStartTime) / 1000);
+                document.getElementById('sessionTimer').textContent = formatTime(elapsed);
+            }
+        }
+
+        function formatTime(seconds) {
+            const hours = Math.floor(seconds / 3600);
+            const minutes = Math.floor((seconds % 3600) / 60);
+            const secs = seconds % 60;
+            
+            return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+        }
+
+        // Close modals when clicking outside
+        window.onclick = function(event) {
+            const questionnaireModal = document.getElementById('questionnaireModal');
+            const infoModal = document.getElementById('infoModal');
+            
+            if (event.target === questionnaireModal) {
+                closeQuestionnaire();
+            }
+            if (event.target === infoModal) {
+                closeInfoModal();
+            }
+        }
+    </script>
+</body>
+</html>
