@@ -99,6 +99,30 @@
             opacity: 0.8;
         }
 
+        /* Added logout button styles */
+        .logout-btn {
+            color: #ff6b5a;
+            background: none;
+            border: none;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.3s;
+            display: none;
+        }
+
+        .logout-btn:hover {
+            opacity: 0.8;
+        }
+
+        .logout-btn.active {
+            display: block;
+        }
+
+        .login-btn.hidden {
+            display: none;
+        }
+
         .cta-btn {
             background-color: #ff6b5a;
             color: white;
@@ -664,7 +688,9 @@
             <a href="#blog">Blog</a>
         </nav>
         <div class="nav-buttons">
-            <button class="login-btn">Login</button>
+            <!-- Added logout button -->
+            <button class="login-btn" id="loginBtn">Login</button>
+            <button class="logout-btn" id="logoutBtn" onclick="handleLogout()">Logout</button>
             <button class="cta-btn" onclick="openQuestionnaire()">Get Started</button>
         </div>
     </header>
@@ -878,6 +904,7 @@
         let currentQuestionIndex = 0;
         let questionnaireAnswers = {};
         let userContactInfo = {};
+        let loggedInUser = null;
 
         function openQuestionnaire() {
             document.getElementById('questionnaireModal').classList.add('active');
@@ -1047,10 +1074,15 @@
                 therapyBefore: questionnaireAnswers.therapyBefore,
                 relationshipLength: questionnaireAnswers.length,
                 areasNeedingHelp: questionnaireAnswers.areas,
+                sexualOrientation: questionnaireAnswers.orientation,
+                genderIdentity: questionnaireAnswers.gender,
+                ageRange: questionnaireAnswers.age,
+                hasChildren: questionnaireAnswers.kids,
                 urgencyLevel: questionnaireAnswers.urgency,
-                source: questionnaireAnswers.source,
+                referralSource: questionnaireAnswers.source,
                 commitmentLevel: questionnaireAnswers.commitment,
-                startingAs: questionnaireAnswers.startAs
+                startingAs: questionnaireAnswers.startAs,
+                signupDate: new Date().toISOString()
             });
 
             renderTermsConfirmation();
@@ -1480,23 +1512,47 @@
             // Simulate login (in real app, this would call an API)
             alert('Login successful! (Demo mode)');
             
-            // Track successful login
-            analytics.track('Login Successful', { 
+            analytics.track('Logged In', { 
                 email: email,
-                timestamp: new Date().toISOString()
+                timestamp: new Date().toISOString(),
+                method: 'email_password'
             });
 
-            // Identify user
+            // Identify user on login
             analytics.identify(email, {
                 email: email,
                 lastLogin: new Date().toISOString()
             });
 
+            loggedInUser = email;
+            document.getElementById('loginBtn').classList.add('hidden');
+            document.getElementById('logoutBtn').classList.add('active');
+
             closeLoginModal();
         }
 
+        function handleLogout() {
+            if (!loggedInUser) return;
+
+            // Track logout
+            analytics.track('Logged Out', { 
+                email: loggedInUser,
+                timestamp: new Date().toISOString()
+            });
+
+            // Reset analytics identity
+            analytics.reset();
+
+            // Update UI
+            loggedInUser = null;
+            document.getElementById('loginBtn').classList.remove('hidden');
+            document.getElementById('logoutBtn').classList.remove('active');
+
+            alert('You have been logged out successfully.');
+        }
+
         // CHANGE: Update login button to open modal
-        document.querySelector('.login-btn').addEventListener('click', openLoginModal);
+        document.getElementById('loginBtn').addEventListener('click', openLoginModal);
 
         // Close modals when clicking outside
         window.onclick = function(event) {
